@@ -6,12 +6,12 @@
   <meta name="author" content="Dong Yuanxin">
   
   
-  <title>标签 | lailailee&#39;s blog</title>
+  <title>SOLID五大设计原则 | lailailee&#39;s blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, Theme-AD">
+    <meta name="keywords" content="设计模式笔记,设计模式,笔记,设计原则,">
   
 
   
@@ -42,12 +42,12 @@
     welcome: {"enable":true,"interval":30},
     start_time: "2019-05-08",
     passwords: ["efe07af7441da2b69c4a41e42e73be4db47f66010a56900788a458354a7373ec", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "Dong Yuanxin",
     share: {"twitter":false,"facebook":false,"weibo":false,"qq":false,"wechat":false},
     mathjax: true,
-    page_type: "tags",
+    page_type: "",
     root: "/blog/"
   };
 </script>
@@ -161,15 +161,100 @@
 <div id="site-process"></div>
     <main>
       
-  <div class="set">
-  <h3 style="text-align: center;">
-    <i class="fa fa-tags"></i>
-    标签云
-  </h3>
-  <a href="/blog/tags/PLAN/" style="font-size: 14px; color: #9e9e9e">PLAN</a> <a href="/blog/tags/工厂模式/" style="font-size: 14px; color: #9e9e9e">工厂模式</a> <a href="/blog/tags/笔记/" style="font-size: 36px; color: #212121">笔记</a> <a href="/blog/tags/设计原则/" style="font-size: 25px; color: #606060">设计原则</a> <a href="/blog/tags/设计模式/" style="font-size: 36px; color: #212121">设计模式</a>
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-05-17
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/设计模式笔记/"><i class="fa fa-bookmark"></i>设计模式笔记</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    SOLID五大设计原则
+  </h1>
+  
+  <article class="passage-article">
+    <!-- ## SOLID 五大设计原则 -->
+<h3 id="S-单一职责原则"><a href="#S-单一职责原则" class="headerlink" title="S - 单一职责原则"></a>S - 单一职责原则</h3><ul>
+<li>一个程序只作好一件事</li>
+<li>如果功能复杂就拆分开,每个部分保持独立</li>
+</ul>
+<h3 id="O-开放封闭原则"><a href="#O-开放封闭原则" class="headerlink" title="O - 开放封闭原则"></a>O - 开放封闭原则</h3><ul>
+<li>对扩展开放,对修改封闭</li>
+<li>增加需求时,扩展新代码,而非修改已有代码</li>
+<li>这是软件设计的终极目标</li>
+</ul>
+<h3 id="L-李氏置换原则"><a href="#L-李氏置换原则" class="headerlink" title="L - 李氏置换原则"></a>L - 李氏置换原则</h3><ul>
+<li>子类能覆盖父类</li>
+<li>弗雷出现的地方子类就能出现</li>
+<li>JS 中使用较少(弱类型 &amp; 继承使用较少)</li>
+</ul>
+<h3 id="I-接口独立原则"><a href="#I-接口独立原则" class="headerlink" title="I - 接口独立原则"></a>I - 接口独立原则</h3><ul>
+<li>保持借口的单一独立,避免出现’胖’接口</li>
+<li>Js 中没有借口(typescript 例外),使用较少</li>
+<li>类似单一职责原则,这里更关注接口</li>
+</ul>
+<h3 id="D-依赖倒置原则"><a href="#D-依赖倒置原则" class="headerlink" title="D - 依赖倒置原则"></a>D - 依赖倒置原则</h3><ul>
+<li>面向接口编程,依赖于抽象而不依赖与具体</li>
+<li>使用方之关注接口而不关注具体类的实现</li>
+<li>JS 使用较少(没有接口 &amp; 弱类型)</li>
+</ul>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#S-单一职责原则"><span class="toc-text">S - 单一职责原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#O-开放封闭原则"><span class="toc-text">O - 开放封闭原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#L-李氏置换原则"><span class="toc-text">L - 李氏置换原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#I-接口独立原则"><span class="toc-text">I - 接口独立原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#D-依赖倒置原则"><span class="toc-text">D - 依赖倒置原则</span></a></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: lailailee</div>
+      
+        <div>
+          原文链接: 
+          <a href target="_blank">https://lailailee.github.io/blog/2019/05/17/2019-05-17-设计原则/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/设计模式/"><i class="fa fa-tags"></i>设计模式</a>
+     
+      <a href="/blog/tags/笔记/"><i class="fa fa-tags"></i>笔记</a>
+     
+      <a href="/blog/tags/设计原则/"><i class="fa fa-tags"></i>设计原则</a>
+    
+    </div>
+  
 </div>
 
     </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
     
     <div class="site-footer-wrapper">
   <footer class="site-footer">
@@ -243,19 +328,19 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/blog/2019/05/19/2019-05-21-设计模式-工厂模式/" data-enable="true">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/blog/2019/05/16/2019-05-16-面向对象/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     
-      <a href="javascript:void(0);" data-enable="false">
+      <a href="#site-comment" data-enable="true">
         <i class="fa fa-commenting"></i>
       </a>
     
