@@ -6,16 +6,16 @@
   <meta name="author" content="Dong Yuanxin">
   
   
-  <title>设计模式-介绍 | lailailee&#39;s blog</title>
+  <title>设计模式-观察者模式 | lailailee&#39;s blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="设计模式笔记,设计模式,笔记,">
+    <meta name="keywords" content="设计模式笔记,设计模式,笔记,观察者模式,">
   
 
   
-  <meta name="description" content="lailailee&#39;s blog">
+  <meta name="description" content="发布 &amp;amp; 订阅一对多">
 
   
 
@@ -164,7 +164,7 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2019-05-20
+      <i class="fa fa-calendar"></i>2019-05-27
     </span>
     
       <span>
@@ -178,41 +178,27 @@
     
   </div>
   <h1 class="passage-title">
-    设计模式-介绍
+    设计模式-观察者模式
   </h1>
   
   <article class="passage-article">
-    <h2 id="介绍-23-种设计模式"><a href="#介绍-23-种设计模式" class="headerlink" title="介绍 23 种设计模式"></a>介绍 23 种设计模式</h2><ul>
-<li>创建型</li>
-<li>结构型</li>
-<li>行为型</li>
+    <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><ul>
+<li>发布 &amp; 订阅</li>
+<li>一对多</li>
 </ul>
-<h3 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h3><ul>
-<li>工厂模式(工厂方法模式,抽象工厂模式,建造者模式)</li>
-<li>单例模式</li>
-<li>原型模式</li>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><ul>
+<li>点咖啡,点好之后坐等被叫</li>
 </ul>
-<h3 id="结构型"><a href="#结构型" class="headerlink" title="结构型"></a>结构型</h3><ul>
-<li>适配器模式</li>
-<li>装饰器模式</li>
-<li>代理模式</li>
-<li>外观模式</li>
-<li>桥接模式</li>
-<li>组合模式</li>
-<li>享元模式</li>
-</ul>
-<h3 id="行为型"><a href="#行为型" class="headerlink" title="行为型"></a>行为型</h3><ul>
-<li>策略模式</li>
-<li>模板方法模式</li>
-<li>观察者模式</li>
-<li>迭代器模式</li>
-<li>职责链模式</li>
-<li>命令模式</li>
-<li>备忘录模式</li>
-<li>状态模式</li>
-<li>访问者模式</li>
-<li>中介者模式</li>
-<li>监视器模式</li>
+<h3 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h3><p><img src="http://prbcq9quk.bkt.clouddn.com//%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F.png" alt="image"></p>
+<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 主题,保存状态,状态变化之后触发所有观察者对象</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Subject</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.state = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">this</span>.observers = [];</span><br><span class="line">  &#125;</span><br><span class="line">  getState() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.state;</span><br><span class="line">  &#125;</span><br><span class="line">  setState(state) &#123;</span><br><span class="line">    <span class="keyword">this</span>.state = state;</span><br><span class="line">    <span class="keyword">this</span>.notifyAllObsevers();</span><br><span class="line">  &#125;</span><br><span class="line">  notifyAllObsevers() &#123;</span><br><span class="line">    <span class="keyword">this</span>.observers.forEach(<span class="function"><span class="params">observer</span> =&gt;</span> &#123;</span><br><span class="line">      observer.update();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  attach() &#123;</span><br><span class="line">    <span class="keyword">this</span>.observers.push(observer);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 观察者</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, subject) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.subject = subject;</span><br><span class="line">    <span class="keyword">this</span>.subject.attach(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  update() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span> update , state: <span class="subst">$&#123;<span class="keyword">this</span>.subject.getState()&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="keyword">let</span> s = <span class="keyword">new</span> Subject();</span><br><span class="line"><span class="keyword">let</span> o1 = <span class="keyword">new</span> Observer(<span class="string">"o1"</span>, s);</span><br><span class="line"><span class="keyword">let</span> o2 = <span class="keyword">new</span> Observer(<span class="string">"o2"</span>, s);</span><br><span class="line"><span class="keyword">let</span> o3 = <span class="keyword">new</span> Observer(<span class="string">"o3"</span>, s);</span><br><span class="line"></span><br><span class="line">s.setState(<span class="number">1</span>);</span><br><span class="line"><span class="comment">// o1 update ,state: 1</span></span><br><span class="line"><span class="comment">// o2 update ,state: 1</span></span><br><span class="line"><span class="comment">// o3 update ,state: 1</span></span><br><span class="line">s.setState(<span class="number">2</span>);</span><br><span class="line"><span class="comment">// o1 update ,state: 2</span></span><br><span class="line"><span class="comment">// o2 update ,state: 2</span></span><br><span class="line"><span class="comment">// o3 update ,state: 2</span></span><br><span class="line">s.setState(<span class="number">3</span>);</span><br><span class="line"><span class="comment">// o1 update ,state: 3</span></span><br><span class="line"><span class="comment">// o2 update ,state: 3</span></span><br><span class="line"><span class="comment">// o3 update ,state: 3</span></span><br></pre></td></tr></table></figure>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
+<li>网页事件绑定(所有的事件监听)</li>
+<li>Promise(then)</li>
+<li>jQuery callbacks</li>
+<li>js new Event() 自定义事件(dispatchEvent 触发)</li>
+<li>nodejs 中: nodejs 自定义事件(emit 触发,Strem,readline 用到了自定义事件),处理 http 请求,多进程通讯</li>
+<li>vue 和 React 组件生命周期触发</li>
+<li>vue wacth</li>
 </ul>
   </article>
   <aside class="table-content" id="site-toc">
@@ -221,7 +207,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍-23-种设计模式"><span class="toc-text">介绍 23 种设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建型"><span class="toc-text">创建型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结构型"><span class="toc-text">结构型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#行为型"><span class="toc-text">行为型</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UML"><span class="toc-text">UML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码演示"><span class="toc-text">代码演示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用场景"><span class="toc-text">应用场景</span></a></li></ol>
   </div>
 </aside>
   
@@ -230,7 +216,7 @@
       
         <div>
           原文链接: 
-          <a href target="_blank">https://lailailee.github.io/blog/2019/05/20/2019-05-20-设计模式-介绍/</a>
+          <a href target="_blank">https://lailailee.github.io/blog/2019/05/27/2023-05-27-设计模式-观察者模式/</a>
         </div>
       
       <div>
@@ -244,6 +230,8 @@
       <a href="/blog/tags/设计模式/"><i class="fa fa-tags"></i>设计模式</a>
      
       <a href="/blog/tags/笔记/"><i class="fa fa-tags"></i>笔记</a>
+     
+      <a href="/blog/tags/观察者模式/"><i class="fa fa-tags"></i>观察者模式</a>
     
     </div>
   
@@ -333,10 +321,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/blog/2019/05/21/2019-05-21-设计模式-工厂模式/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/blog/2019/05/17/2019-05-17-设计原则/" data-enable="true">
+    <a href="/blog/2019/05/27/2022-05-27-设计模式-外观模式/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
