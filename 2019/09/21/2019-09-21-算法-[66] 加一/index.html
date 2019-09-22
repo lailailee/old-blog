@@ -6,7 +6,7 @@
   <meta name="author" content="Dong Yuanxin">
   
   
-  <title>[1] 两数之和 | lailailee&#39;s blog</title>
+  <title>[66] 加一 | lailailee&#39;s blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="给定一个整数数组 nums  和一个目标值 target，请你在该数组中找出和为目标值的那   两个   整数，并返回他们的数组下标。你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。">
+  <meta name="description" content="给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。最高位数字存放在数组的首位， 数组中每个元素只存储单个数字。你可以假设除了整数 0 之外，这个整数不会以零开头。">
 
   
 
@@ -164,7 +164,7 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2019-09-20
+      <i class="fa fa-calendar"></i>2019-09-21
     </span>
     
       <span>
@@ -178,36 +178,40 @@
     
   </div>
   <h1 class="passage-title">
-    [1] 两数之和
+    [66] 加一
   </h1>
   
   <article class="passage-article">
-    <p><a href="https://github.com/lailailee/leetcodeByJs-shuashuashua/blob/master/problems/%5B1%5D%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C.md" target="_blank" rel="noopener">Github</a></p>
-<!-- ##### [Blog](http://localhost:4000/2019/09/20/2019-09-20-%E7%AE%97%E6%B3%95-[1]%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/) -->
-<p><a href="https://leetcode-cn.com/problems/two-sum/solution/" target="_blank" rel="noopener">官方题解</a></p>
-<p>难度: 简单</p>
-<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h4><p>给定一个整数数组 nums  和一个目标值 target，请你在该数组中找出和为目标值的那   两个   整数，并返回他们的数组下标。</p>
-<p>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><p>给定 nums = [2, 7, 11, 15], target = 9</p>
-<p>因为 nums[0] + nums[1] = 2 + 7 = 9</p>
-<p>所以返回 [0, 1]</p>
-<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul>
-<li>题中给定数组为无序排列,因此只能老老实实进行双层遍历,将每个数都和其他数字进行相加</li>
-<li>好在只有一个输出,相加满足条件后直接返回</li>
+    <h2 id="66-加一"><a href="#66-加一" class="headerlink" title="[66] 加一"></a>[66] 加一</h2><h5 id="Github"><a href="#Github" class="headerlink" title="Github"></a><a href="https://github.com/lailailee/LeetcodeByJs-shuashuashua/blob/master/problems/%5B66%5D%20%E5%8A%A0%E4%B8%80.md" target="_blank" rel="noopener">Github</a></h5><h5 id="官方题解"><a href="#官方题解" class="headerlink" title="官方题解"></a><a href="https://leetcode-cn.com/problems/plus-one/solution/" target="_blank" rel="noopener">官方题解</a></h5><ul>
+<li>难度: 简单</li>
 </ul>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; nums</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; target</span></span><br><span class="line"><span class="comment"> * @return &#123;number[]&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> twoSum = <span class="function"><span class="keyword">function</span>(<span class="params">nums, target</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> r = <span class="number">0</span>; r &lt; nums.length - <span class="number">1</span>; r++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> l = r + <span class="number">1</span>; l &lt; nums.length; l++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (nums[r] + nums[l] === target) &#123;</span><br><span class="line">        <span class="keyword">return</span> [r, l]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h4><p>给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。</p>
+<p>最高位数字存放在数组的首位， 数组中每个元素只存储单个数字。</p>
+<p>你可以假设除了整数 0 之外，这个整数不会以零开头。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><p><strong>示例一:</strong></p>
+<p>输入: [1,2,3]</p>
+<p>输出: [1,2,4]</p>
+<p>解释: 输入数组表示数字 123。</p>
+<p><strong>示例二</strong>:</p>
+<p>输入: [4,3,2,1]</p>
+<p>输出: [4,3,2,2]</p>
+<p>解释: 输入数组表示数字 4321。</p>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>从数组末尾开始加 1,满足返回的条件只有两种:</p>
+<ul>
+<li>一是当前元素加 1 小于 10,返回</li>
+<li>二是当前元素加 1 等于 10 且当前下标为 0,则将 digits[0]设为 0,再给它加一位 1 返回</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; digits</span></span><br><span class="line"><span class="comment"> * @return &#123;number[]&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> plusOne = <span class="function"><span class="keyword">function</span>(<span class="params">digits</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> i = digits.length - <span class="number">1</span></span><br><span class="line">  <span class="keyword">while</span> (i &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (digits[i] + <span class="number">1</span> !== <span class="number">10</span>) &#123;</span><br><span class="line">      digits[i]++</span><br><span class="line">      <span class="keyword">return</span> digits</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      digits[i] = <span class="number">0</span></span><br><span class="line">      <span class="keyword">if</span> (i === <span class="number">0</span>) &#123;</span><br><span class="line">        digits.unshift(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> digits</span><br><span class="line">      &#125;</span><br><span class="line">      i--</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h5><p>√ Accepted</p>
-<ul>
-<li>√ 29/29 cases passed (156 ms)</li>
-<li>√ Your runtime beats 54.77 % of javascript submissions</li>
-<li>√ Your memory usage beats 45.66 % of javascript submissions (34.6 MB)</li>
-</ul>
+<p>√ 109/109 cases passed (64 ms)</p>
+<p>√ Your runtime beats 98.84 % of javascript submissions</p>
+<p>√ Your memory usage beats 7.71 % of javascript submissions (34 MB)</p>
 <h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><ul>
-<li>时间复杂度：O(n^2)，</li>
+<li>时间复杂度：O(n)</li>
 </ul>
-<p>对于每个元素，我们试图通过遍历数组的其余部分来寻找它所对应的目标元素，这将耗费 O(n) 的时间。因此时间复杂度为 O(n^2)。</p>
+<p>遍历一遍元素即可</p>
 <ul>
-<li>空间复杂度：O(1)。</li>
+<li>空间复杂度：O(1)</li>
 </ul>
   </article>
   <aside class="table-content" id="site-toc">
@@ -216,7 +220,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#结果"><span class="toc-text">结果</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复杂度分析："><span class="toc-text">复杂度分析：</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#66-加一"><span class="toc-text">[66] 加一</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Github"><span class="toc-text">Github</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#官方题解"><span class="toc-text">官方题解</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#结果"><span class="toc-text">结果</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复杂度分析："><span class="toc-text">复杂度分析：</span></a></li></ol>
   </div>
 </aside>
   
@@ -225,7 +229,7 @@
       
         <div>
           原文链接: 
-          <a href target="_blank">https://blog.lailailee.com/2019/09/20/2019-09-20-算法-[1] 两数之和/</a>
+          <a href target="_blank">https://blog.lailailee.com/2019/09/21/2019-09-21-算法-[66] 加一/</a>
         </div>
       
       <div>
@@ -328,10 +332,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/2019/09/21/2019-09-21-算法-[66] 加一/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/2019/09/20/2019-09-20-算法-LeetCode刷题记录 copy/" data-enable="true">
+    <a href="/2019/09/20/2019-09-20-算法-[1] 两数之和/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
