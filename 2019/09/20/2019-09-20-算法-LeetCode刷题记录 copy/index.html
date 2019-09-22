@@ -6,16 +6,16 @@
   <meta name="author" content="Dong Yuanxin">
   
   
-  <title>设计模式-适配器模式 | lailailee&#39;s blog</title>
+  <title>[置顶]LeetCode刷题记录 | lailailee&#39;s blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="设计模式笔记,设计模式,笔记,适配器模式,">
+    <meta name="keywords" content="算法,算法,LeetCode,">
   
 
   
-  <meta name="description" content="旧接口格式和使用者不兼容中间加一个适配器转换接口">
+  <meta name="description" content="记录我的 LeetCode 刷题过程">
 
   
 
@@ -164,11 +164,11 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2019-05-23
+      <i class="fa fa-calendar"></i>2019-09-20
     </span>
     
       <span>
-        | <a href="/categories/设计模式笔记/"><i class="fa fa-bookmark"></i>设计模式笔记</a>
+        | <a href="/categories/算法/"><i class="fa fa-bookmark"></i>算法</a>
       </span>
     
     
@@ -178,20 +178,14 @@
     
   </div>
   <h1 class="passage-title">
-    设计模式-适配器模式
+    [置顶]LeetCode刷题记录
   </h1>
   
   <article class="passage-article">
-    <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><ul>
-<li>旧接口格式和使用者不兼容</li>
-<li>中间加一个适配器转换接口</li>
+    <h6 id="LeetCodeByJs-ShuaShuaShua"><a href="#LeetCodeByJs-ShuaShuaShua" class="headerlink" title="LeetCodeByJs-ShuaShuaShua"></a><a href="https://github.com/lailailee/LeetcodeByJs-shuashuashua" target="_blank" rel="noopener">LeetCodeByJs-ShuaShuaShua</a></h6><h4 id="Easy"><a href="#Easy" class="headerlink" title="Easy:"></a>Easy:</h4><ul>
+<li>[1]<a href="https://github.com/lailailee/leetcodeByJs-shuashuashua/blob/master/problems/%5B1%5D%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C.md" target="_blank" rel="noopener">两数之和 | two sum</a></li>
 </ul>
-<h3 id="UML-类图"><a href="#UML-类图" class="headerlink" title="UML 类图"></a>UML 类图</h3><p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F.png" alt></p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Adaptee</span> </span>&#123;</span><br><span class="line">  specificRequest() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'德国标准插头'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Target</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.adaptee = <span class="keyword">new</span> Adaptee()</span><br><span class="line">  &#125;</span><br><span class="line">  request() &#123;</span><br><span class="line">    <span class="keyword">let</span> info = <span class="keyword">this</span>.adaptee.specificRequest()</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;info&#125;</span> - 转换器 - 中国标准插头`</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="keyword">let</span> login1 = <span class="keyword">new</span> Target()</span><br><span class="line">login1.request()</span><br></pre></td></tr></table></figure>
-<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
-<li>封装旧接口</li>
-<li>vue computed</li>
-</ul>
+<h4 id="Medium"><a href="#Medium" class="headerlink" title="Medium"></a>Medium</h4><h4 id="Hard"><a href="#Hard" class="headerlink" title="Hard:"></a>Hard:</h4>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -199,8 +193,8 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UML-类图"><span class="toc-text">UML 类图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#场景"><span class="toc-text">场景</span></a></li></ol>
-  </div>
+    <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#LeetCodeByJs-ShuaShuaShua"><span class="toc-text">LeetCodeByJs-ShuaShuaShua</span></a></li></ol><li class="toc-item toc-level-4"><a class="toc-link" href="#Easy"><span class="toc-text">Easy:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Medium"><span class="toc-text">Medium</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hard"><span class="toc-text">Hard:</span></a>
+  </li></div>
 </aside>
   
     <aside class="passage-copyright">
@@ -208,7 +202,7 @@
       
         <div>
           原文链接: 
-          <a href target="_blank">https://blog.lailailee.com/2019/05/23/2019-05-23-设计模式-适配器模式/</a>
+          <a href target="_blank">https://blog.lailailee.com/2019/09/20/2019-09-20-算法-LeetCode刷题记录 copy/</a>
         </div>
       
       <div>
@@ -219,11 +213,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/设计模式/"><i class="fa fa-tags"></i>设计模式</a>
+      <a href="/tags/算法/"><i class="fa fa-tags"></i>算法</a>
      
-      <a href="/tags/笔记/"><i class="fa fa-tags"></i>笔记</a>
-     
-      <a href="/tags/适配器模式/"><i class="fa fa-tags"></i>适配器模式</a>
+      <a href="/tags/LeetCode/"><i class="fa fa-tags"></i>LeetCode</a>
     
     </div>
   
@@ -313,10 +305,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/2019/05/26/2019-05-26-设计模式-代理模式/" data-enable="true">
+    <a href="/2019/09/20/2019-09-20-算法-[1] 两数之和/" data-enable="true">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/2019/05/23/2019-05-23-设计模式-装饰器模式/" data-enable="true">
+    <a href="/2019/07/09/2019-07-09-设计模式-迭代器模式/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
