@@ -6,7 +6,7 @@
   <meta name="author" content="Dong Yuanxin">
   
   
-  <title>[置顶]LeetCode刷题记录 | lailailee&#39;s blog</title>
+  <title>[696] 计数二进制子串( Count Binary Substrings) | lailailee&#39;s blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="记录我的 LeetCode 刷题过程">
+  <meta name="description" content="给定一个字符串s，计算具有相同数量0和1的非空(连续)子字符串的数量，并且这些子字符串中的所有0和所有1都是组合在一起的。重复出现的子串要计算它们出现的次数。">
 
   
 
@@ -164,7 +164,7 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2019-09-20
+      <i class="fa fa-calendar"></i>2019-09-30
     </span>
     
       <span>
@@ -178,22 +178,140 @@
     
   </div>
   <h1 class="passage-title">
-    [置顶]LeetCode刷题记录
+    [696] 计数二进制子串( Count Binary Substrings)
   </h1>
   
   <article class="passage-article">
-    <p><a href="https://github.com/lailailee/LeetcodeByJs-shuashuashua" target="_blank" rel="noopener">LeetCodeByJs-ShuaShuaShua</a></p>
-<h4 id="Easy"><a href="#Easy" class="headerlink" title="Easy:"></a>Easy:</h4><ul>
-<li><p>[1] 两数之和 (Two Sum) | <a href="https://github.com/lailailee/leetcodeByJs-shuashuashua/blob/master/problems/%5B1%5D%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C.md" target="_blank" rel="noopener">Github</a> | <a href="https://blog.lailailee.com/2019/09/20/2019-09-20-%E7%AE%97%E6%B3%95-[1]%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">Blog</a></p>
+    <ul>
+<li><p>类型：字符串类</p>
 </li>
-<li><p>[13] 罗马数字转整数(Roman to Integer) | <a href="https://github.com/lailailee/LeetcodeByJs-shuashuashua/blob/master/problems/%5B13%5D%20%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0.md" target="_blank" rel="noopener">Github</a> | <a href="https://blog.lailailee.com/2019/09/22/2019-09-22-%E7%AE%97%E6%B3%95-[13]%20%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0/">Blog</a></p>
-</li>
-<li><p>[66] 加一 (Plus One) | <a href="https://github.com/lailailee/LeetcodeByJs-shuashuashua/blob/master/problems/%5B66%5D%20%E5%8A%A0%E4%B8%80.md" target="_blank" rel="noopener">Github</a> | <a href="https://blog.lailailee.com/2019/09/21/2019-09-21-%E7%AE%97%E6%B3%95-[66]%20%E5%8A%A0%E4%B8%80/">Blog</a></p>
-</li>
-<li><p>[696] 计数二进制子串(Count Binary Substrings)|<a href="https://github.com/lailailee/LeetcodeByJs-shuashuashua/blob/master/problems/%5B696%5D%20%E8%AE%A1%E6%95%B0%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AD%90%E4%B8%B2.md" target="_blank" rel="noopener">Github</a>| <a href="http://localhost:4000/2019/09/30/2019-09-30-%E7%AE%97%E6%B3%95-[696]%20%E8%AE%A1%E6%95%B0%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AD%90%E4%B8%B2/" target="_blank" rel="noopener">Blog</a></p>
+<li><p>难度: 简单</p>
 </li>
 </ul>
-<h4 id="Medium"><a href="#Medium" class="headerlink" title="Medium"></a>Medium</h4><h4 id="Hard"><a href="#Hard" class="headerlink" title="Hard:"></a>Hard:</h4>
+<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h4><p>给定一个字符串s，计算具有相同数量0和1的非空(连续)子字符串的数量，并且这些子字符串中的所有0和所有1都是组合在一起的。</p>
+<p>重复出现的子串要计算它们出现的次数。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><p><strong>示例一:</strong></p>
+<p>输入: “00110011”</p>
+<p>输出: 6</p>
+<p>解释: 有6个子串具有相同数量的连续1和0：“0011”，“01”，“1100”，“10”，“0011” 和 “01”。</p>
+<p>请注意，一些重复出现的子串要计算它们出现的次数。</p>
+<p>另外，“00110011”不是有效的子串，因为所有的0（和1）没有组合在一起。</p>
+<p><strong>示例二:</strong></p>
+<p>输入: “10101”</p>
+<p>输出: 4</p>
+<p>解释: 有4个子串：“10”，“01”，“10”，“01”，它们具有相同数量的连续1和0。</p>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul>
+<li>观察得：每进一位最多只会有一个子串</li>
+<li>current当前字符个数，默认为1，preview前一个字符个数，默认为0</li>
+<li>如果当前字符与下一个字符相等，则current+1</li>
+<li>如果当前字符与下一个字符不等，则把当前字符个数赋给前一个字符的个数，再将当前字符个数清为1</li>
+<li>判断是否含有子串则是比较前一个字符个数大于等于当前字符个数,符合条件则肯定有一个子串，结合观察给与进位继续循环 (preview &gt;= current) n++</li>
+</ul>
+<h4 id="表格示意"><a href="#表格示意" class="headerlink" title="表格示意"></a>表格示意</h4><p>输入: “00110011”</p>
+<p>输出: 6</p>
+<table>
+<thead>
+<tr>
+<th>\</th>
+<th>0</th>
+<th>0</th>
+<th>1</th>
+<th>1</th>
+<th>0</th>
+<th>0</th>
+<th>1</th>
+<th>1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pre</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>cur</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>n</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p>输入: “10101”</p>
+<p>输出: 4</p>
+<table>
+<thead>
+<tr>
+<th>\</th>
+<th>1</th>
+<th>0</th>
+<th>1</th>
+<th>0</th>
+<th>1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pre</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>cur</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>n</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;string&#125; s</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> countBinarySubstrings = <span class="function"><span class="keyword">function</span> (<span class="params">s</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//current当前字符个数，默认为1，preview前一个字符个数，默认为0</span></span><br><span class="line">  <span class="keyword">let</span> current = <span class="number">1</span>, preview = <span class="number">0</span>, n = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, len = s.length; i &lt; len - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (s[i] === s[i + <span class="number">1</span>]) &#123;</span><br><span class="line">      current++</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      preview = current</span><br><span class="line">      current = <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (preview &gt;= current) n++</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> n</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><p>Accepted</p>
+<p>90/90 cases passed (76 ms)</p>
+<p>Your runtime beats 99.68 % of javascript submissions</p>
+<p>Your memory usage beats 55.2 % of javascript submissions (38.3 MB)</p>
+<h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><ul>
+<li>时间复杂度：O(n)，</li>
+</ul>
+<p>只需要遍历一遍s字符串，所以时间复杂度是O(n)</p>
+<ul>
+<li>空间复杂度：O(1)。</li>
+</ul>
+<!--[Blog](https://blog.lailailee.com/2019/09/20/2019-09-20-%E7%AE%97%E6%B3%95-[1]%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/)-->
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -201,7 +319,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Easy"><span class="toc-text">Easy:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Medium"><span class="toc-text">Medium</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hard"><span class="toc-text">Hard:</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#表格示意"><span class="toc-text">表格示意</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结果"><span class="toc-text">结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复杂度分析："><span class="toc-text">复杂度分析：</span></a></li></ol>
   </div>
 </aside>
   
@@ -210,7 +328,7 @@
       
         <div>
           原文链接: 
-          <a href target="_blank">https://blog.lailailee.com/2019/09/20/2019-09-20-算法-LeetCode刷题记录/</a>
+          <a href target="_blank">https://blog.lailailee.com/2019/09/30/2019-09-30-算法-[696] 计数二进制子串/</a>
         </div>
       
       <div>
@@ -313,10 +431,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/2019/09/21/2019-09-21-算法-[66] 加一/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/2019/09/20/2019-09-20-算法-[1] 两数之和/" data-enable="true">
+    <a href="/2019/09/22/2019-09-22-算法-[13] 罗马数字转整数 copy/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
