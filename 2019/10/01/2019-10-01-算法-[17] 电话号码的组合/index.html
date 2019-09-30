@@ -6,16 +6,16 @@
   <meta name="author" content="Dong Yuanxin">
   
   
-  <title>设计模式-观察者模式 | lailailee&#39;s blog</title>
+  <title>[17] 电话号码的组合(Letter Combinations of a Phone Number) | lailailee&#39;s blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="设计模式笔记,设计模式,笔记,观察者模式,">
+    <meta name="keywords" content="算法,算法,LeetCode,">
   
 
   
-  <meta name="description" content="发布 &amp;amp; 订阅一对多">
+  <meta name="description" content="给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。">
 
   
 
@@ -164,11 +164,11 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2019-05-27
+      <i class="fa fa-calendar"></i>2019-10-01
     </span>
     
       <span>
-        | <a href="/categories/设计模式笔记/"><i class="fa fa-bookmark"></i>设计模式笔记</a>
+        | <a href="/categories/算法/"><i class="fa fa-bookmark"></i>算法</a>
       </span>
     
     
@@ -178,28 +178,42 @@
     
   </div>
   <h1 class="passage-title">
-    设计模式-观察者模式
+    [17] 电话号码的组合(Letter Combinations of a Phone Number)
   </h1>
   
   <article class="passage-article">
-    <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><ul>
-<li>发布 &amp; 订阅</li>
-<li>一对多</li>
+    <ul>
+<li><p>类型：数组类</p>
+</li>
+<li><p>难度: 中等</p>
+</li>
 </ul>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><ul>
-<li>点咖啡,点好之后坐等被叫</li>
+<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h4><p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。</p>
+<p>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
+<p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/leetcode-17.png" alt="image"></p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><p>输入：”23”</p>
+<p>输出：[“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].</p>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>这道题可以用递归，也可以用三层循环遍历来做，总之时间复杂度都是O(n^3)</li>
+<li>我这里采用三层遍历的方法，将传入数字转化为字符串数组并进行遍历，</li>
+<li>对字符串数组的每一项与其下一项进行合并，并把合并后的值赋给下一项</li>
+<li>以此类推直到最后一项结束，返回数组最后一项的内容，即为本题的解</li>
+</ol>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> letterCombinations = <span class="function"><span class="keyword">function</span> (<span class="params">digits</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> obj = &#123;</span><br><span class="line">    <span class="number">2</span>: <span class="string">'abc'</span>,</span><br><span class="line">    <span class="number">3</span>: <span class="string">'def'</span>,</span><br><span class="line">    <span class="number">4</span>: <span class="string">'ghi'</span>,</span><br><span class="line">    <span class="number">5</span>: <span class="string">'jkl'</span>,</span><br><span class="line">    <span class="number">6</span>: <span class="string">'mno'</span>,</span><br><span class="line">    <span class="number">7</span>: <span class="string">'pqrs'</span>,</span><br><span class="line">    <span class="number">8</span>: <span class="string">'tuv'</span>,</span><br><span class="line">    <span class="number">9</span>: <span class="string">'wxyz'</span>,</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> combin = <span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> c = []</span><br><span class="line">    a.forEach(<span class="function">(<span class="params">itema</span>) =&gt;</span> &#123;</span><br><span class="line">      b.forEach(<span class="function">(<span class="params">itemb</span>) =&gt;</span> &#123;</span><br><span class="line">        c.push(itema + itemb)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (digits.length === <span class="number">0</span>) <span class="keyword">return</span> []</span><br><span class="line">  digits = digits.split(<span class="string">''</span>).map(<span class="function"><span class="params">e</span> =&gt;</span> obj[e].split(<span class="string">''</span>))</span><br><span class="line">  <span class="keyword">let</span> len = digits.length</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    digits[i + <span class="number">1</span>] = combin(digits[i], digits[i + <span class="number">1</span>])</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> digits[len - <span class="number">1</span>]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><p>Accepted</p>
+<ul>
+<li>25/25 cases passed (56 ms)</li>
+<li>Your runtime beats 99.18 % of javascript submissions</li>
+<li>Your memory usage beats 50.66 % of javascript submissions (33.6 MB)</li>
 </ul>
-<h3 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h3><p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F.png" alt></p>
-<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 主题,保存状态,状态变化之后触发所有观察者对象</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Subject</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.state = <span class="number">0</span></span><br><span class="line">    <span class="keyword">this</span>.observers = []</span><br><span class="line">  &#125;</span><br><span class="line">  getState() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.state</span><br><span class="line">  &#125;</span><br><span class="line">  setState(state) &#123;</span><br><span class="line">    <span class="keyword">this</span>.state = state</span><br><span class="line">    <span class="keyword">this</span>.notifyAllObsevers()</span><br><span class="line">  &#125;</span><br><span class="line">  notifyAllObsevers() &#123;</span><br><span class="line">    <span class="keyword">this</span>.observers.forEach(<span class="function"><span class="params">observer</span> =&gt;</span> &#123;</span><br><span class="line">      observer.update()</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  attach() &#123;</span><br><span class="line">    <span class="keyword">this</span>.observers.push(observer)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 观察者</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name, subject) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    <span class="keyword">this</span>.subject = subject</span><br><span class="line">    <span class="keyword">this</span>.subject.attach(<span class="keyword">this</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  update() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span> update , state: <span class="subst">$&#123;<span class="keyword">this</span>.subject.getState()&#125;</span>`</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="keyword">let</span> s = <span class="keyword">new</span> Subject()</span><br><span class="line"><span class="keyword">let</span> o1 = <span class="keyword">new</span> Observer(<span class="string">'o1'</span>, s)</span><br><span class="line"><span class="keyword">let</span> o2 = <span class="keyword">new</span> Observer(<span class="string">'o2'</span>, s)</span><br><span class="line"><span class="keyword">let</span> o3 = <span class="keyword">new</span> Observer(<span class="string">'o3'</span>, s)</span><br><span class="line"></span><br><span class="line">s.setState(<span class="number">1</span>)</span><br><span class="line"><span class="comment">// o1 update ,state: 1</span></span><br><span class="line"><span class="comment">// o2 update ,state: 1</span></span><br><span class="line"><span class="comment">// o3 update ,state: 1</span></span><br><span class="line">s.setState(<span class="number">2</span>)</span><br><span class="line"><span class="comment">// o1 update ,state: 2</span></span><br><span class="line"><span class="comment">// o2 update ,state: 2</span></span><br><span class="line"><span class="comment">// o3 update ,state: 2</span></span><br><span class="line">s.setState(<span class="number">3</span>)</span><br><span class="line"><span class="comment">// o1 update ,state: 3</span></span><br><span class="line"><span class="comment">// o2 update ,state: 3</span></span><br><span class="line"><span class="comment">// o3 update ,state: 3</span></span><br></pre></td></tr></table></figure>
-<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
-<li>网页事件绑定(所有的事件监听)</li>
-<li>Promise(then)</li>
-<li>jQuery callbacks</li>
-<li>js new Event() 自定义事件(dispatchEvent 触发)</li>
-<li>nodejs 中: nodejs 自定义事件(emit 触发,Strem,readline 用到了自定义事件),处理 http 请求,多进程通讯</li>
-<li>vue 和 React 组件生命周期触发</li>
-<li>vue wacth</li>
+<h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><ul>
+<li>时间复杂度：O(n^3)，</li>
 </ul>
+<p>总共要经历三个循环，时间复杂度为O(n^3)</p>
+<ul>
+<li>空间复杂度：O(n)。</li>
+</ul>
+<p>combin函数中的c经历了一层循环，空间复杂度即为O(n)</p>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -207,7 +221,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UML"><span class="toc-text">UML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码演示"><span class="toc-text">代码演示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用场景"><span class="toc-text">应用场景</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结果"><span class="toc-text">结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复杂度分析："><span class="toc-text">复杂度分析：</span></a></li></ol>
   </div>
 </aside>
   
@@ -216,7 +230,7 @@
       
         <div>
           原文链接: 
-          <a href target="_blank">https://blog.lailailee.com/2019/05/27/2019-05-27-设计模式-观察者模式/</a>
+          <a href target="_blank">https://blog.lailailee.com/2019/10/01/2019-10-01-算法-[17] 电话号码的组合/</a>
         </div>
       
       <div>
@@ -227,11 +241,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/设计模式/"><i class="fa fa-tags"></i>设计模式</a>
+      <a href="/tags/算法/"><i class="fa fa-tags"></i>算法</a>
      
-      <a href="/tags/笔记/"><i class="fa fa-tags"></i>笔记</a>
-     
-      <a href="/tags/观察者模式/"><i class="fa fa-tags"></i>观察者模式</a>
+      <a href="/tags/LeetCode/"><i class="fa fa-tags"></i>LeetCode</a>
     
     </div>
   
@@ -321,10 +333,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/2019/05/27/2019-05-27-设计模式-外观模式/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/2019/05/26/2019-05-26-设计模式-代理模式vs适配器模式vs装饰器模式/" data-enable="true">
+    <a href="/2019/09/30/2019-09-30-算法-[696] 计数二进制子串/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
