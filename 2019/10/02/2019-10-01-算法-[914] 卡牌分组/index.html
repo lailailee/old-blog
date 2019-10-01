@@ -6,7 +6,7 @@
   <meta name="author" content="Dong Yuanxin">
   
   
-  <title>[17] 电话号码的组合(Letter Combinations of a Phone Number) | lailailee&#39;s blog</title>
+  <title>[914] 卡牌分组( X of a Kind in a Deck of Cards) | lailailee&#39;s blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。">
+  <meta name="description" content="给定一副牌，每张牌上都写着一个整数。此时，你需要选定一个数字 X，使我们可以将整副牌按下述规则分成 1 组或更多组：">
 
   
 
@@ -164,7 +164,7 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2019-10-01
+      <i class="fa fa-calendar"></i>2019-10-02
     </span>
     
       <span>
@@ -178,42 +178,52 @@
     
   </div>
   <h1 class="passage-title">
-    [17] 电话号码的组合(Letter Combinations of a Phone Number)
+    [914] 卡牌分组( X of a Kind in a Deck of Cards)
   </h1>
   
   <article class="passage-article">
     <ul>
-<li><p>类型：数组类</p>
+<li><p>类型：字符串类</p>
 </li>
-<li><p>难度: 中等</p>
+<li><p>难度: 简单</p>
 </li>
 </ul>
-<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h4><p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。</p>
-<p>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
-<p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/leetcode-17.png" alt="image"></p>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><p>输入：”23”</p>
-<p>输出：[“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].</p>
-<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
-<li>这道题可以用递归，也可以用三层循环遍历来做，总之时间复杂度都是O(n^3)</li>
-<li>我这里采用三层遍历的方法，将传入数字转化为字符串数组并进行遍历，</li>
-<li>对字符串数组的每一项与其下一项进行合并，并把合并后的值赋给下一项</li>
-<li>以此类推直到最后一项结束，返回数组最后一项的内容，即为本题的解</li>
+<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h4><p>给定一副牌，每张牌上都写着一个整数。</p>
+<p>此时，你需要选定一个数字 X，使我们可以将整副牌按下述规则分成 1 组或更多组：</p>
+<ul>
+<li>每组都有 X 张牌。</li>
+<li>组内所有的牌上都写着相同的整数。</li>
+</ul>
+<p>仅当你可选的 X &gt;= 2 时返回 true。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><p><strong>示例一:</strong></p>
+<p>输入：[1,2,3,4,4,3,2,1]</p>
+<p>输出：true</p>
+<p>解释：可行的分组是 [1,1]，[2,2]，[3,3]，[4,4]</p>
+<p><strong>示例二:</strong></p>
+<p>输入：[1,1,1,2,2,2,3,3]</p>
+<p>输出：false</p>
+<p>解释：没有满足要求的分组。</p>
+<p><strong>示例三:</strong></p>
+<p>输入：[1]</p>
+<p>输出：false</p>
+<p>解释：没有满足要求的分组。</p>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>观察：此题大意是要求出输入数字的出现次数并求出他们的最大公约数</p>
+<ol>
+<li>使用Array.reduce()得出各个数字的出现次数，接下来求他们的最大公约数   </li>
+<li>Object.values()获得出现次数的数组，可以有去重的操作Array.from(new Set(array))</li>
+<li>这时得到的数组的第一位即为最小出现次数，该次数等于1时不符合题意（X &gt;= 2），并且我们求得的公约数也不应该大于此数</li>
 </ol>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> letterCombinations = <span class="function"><span class="keyword">function</span> (<span class="params">digits</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> obj = &#123;</span><br><span class="line">    <span class="number">2</span>: <span class="string">'abc'</span>,</span><br><span class="line">    <span class="number">3</span>: <span class="string">'def'</span>,</span><br><span class="line">    <span class="number">4</span>: <span class="string">'ghi'</span>,</span><br><span class="line">    <span class="number">5</span>: <span class="string">'jkl'</span>,</span><br><span class="line">    <span class="number">6</span>: <span class="string">'mno'</span>,</span><br><span class="line">    <span class="number">7</span>: <span class="string">'pqrs'</span>,</span><br><span class="line">    <span class="number">8</span>: <span class="string">'tuv'</span>,</span><br><span class="line">    <span class="number">9</span>: <span class="string">'wxyz'</span>,</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> combin = <span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> c = []</span><br><span class="line">    a.forEach(<span class="function">(<span class="params">itema</span>) =&gt;</span> &#123;</span><br><span class="line">      b.forEach(<span class="function">(<span class="params">itemb</span>) =&gt;</span> &#123;</span><br><span class="line">        c.push(itema + itemb)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (digits.length === <span class="number">0</span>) <span class="keyword">return</span> []</span><br><span class="line">  digits = digits.split(<span class="string">''</span>).map(<span class="function"><span class="params">e</span> =&gt;</span> obj[e].split(<span class="string">''</span>))</span><br><span class="line">  <span class="keyword">let</span> len = digits.length</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    digits[i + <span class="number">1</span>] = combin(digits[i], digits[i + <span class="number">1</span>])</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> digits[len - <span class="number">1</span>]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><p>Accepted</p>
-<ul>
-<li>25/25 cases passed (56 ms)</li>
-<li>Your runtime beats 99.18 % of javascript submissions</li>
-<li>Your memory usage beats 50.66 % of javascript submissions (33.6 MB)</li>
-</ul>
+<h4 id="求最大公约数的方法"><a href="#求最大公约数的方法" class="headerlink" title="求最大公约数的方法"></a>求最大公约数的方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">    start[开始] --&gt; inputZ[输入a,b a&gt;b]</span><br><span class="line">    inputZ --&gt; inputN[c=a%b] </span><br><span class="line">    inputN  --&gt; conditionB&#123;c=0?&#125;</span><br><span class="line">    conditionB -- YES --&gt; inputB[b为a和b的最大公约数]</span><br><span class="line">    inputB --&gt; inputC[输出b]</span><br><span class="line">    conditionB -- NO --&gt; inputD[a=b,b=a%b]</span><br><span class="line">    inputD --&gt;inputN</span><br><span class="line">    inputC --&gt; stop[结束]</span><br></pre></td></tr></table></figure>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hasGroupsSizeX = <span class="function"><span class="keyword">function</span> (<span class="params">deck</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//得出各个数字的出现次数，接下来求他们的公约数</span></span><br><span class="line">  <span class="keyword">let</span> hash = deck.reduce(<span class="function">(<span class="params">preArr, curValue</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!preArr[curValue]) &#123;</span><br><span class="line">      preArr[curValue] = <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      preArr[curValue]++</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> preArr</span><br><span class="line">  &#125;, &#123;&#125;)</span><br><span class="line">  <span class="comment">//因为要求公约数，所以完全可以去重 tips:通过Object.values得到的结果一定是排了序的</span></span><br><span class="line">  <span class="comment">// hash = Array.from(new Set(Object.values(hash)))</span></span><br><span class="line">  hash = <span class="built_in">Object</span>.values(hash)</span><br><span class="line">  <span class="comment">//获取公约数的函数</span></span><br><span class="line">  <span class="keyword">let</span> getPublic = <span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//其实第一遍都知道b不可能为0，目的就是把a%b的余数带入下一步递归好做判断</span></span><br><span class="line">    <span class="keyword">if</span> (b === <span class="number">0</span>) <span class="keyword">return</span> a</span><br><span class="line">    <span class="keyword">return</span> getPublic(b, a % b)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//这里要获取一波最小值，这个最小值就是我们要求到的公约数的最大值，并且如果公约数等于1的话，不符合题中条件，需要单独进行判断</span></span><br><span class="line">  <span class="keyword">if</span> (hash[<span class="number">0</span>] === <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  <span class="keyword">let</span> min = hash[<span class="number">0</span>]</span><br><span class="line">  <span class="keyword">return</span> !hash.some(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> getPublic(min, item) === <span class="number">1</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><p>执行用时 :<br>68 ms<br>, 在所有 JavaScript 提交中击败了<br>99.48%<br>的用户</p>
+<p>内存消耗 :<br>35.6 MB<br>, 在所有 JavaScript 提交中击败了<br>77.56%<br>的用户</p>
 <h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><ul>
-<li>时间复杂度：O(n^3)，</li>
+<li>时间复杂度：O(n)，</li>
 </ul>
-<p>总共要经历三个循环，时间复杂度为O(n^3)</p>
+<p>得出各个数字的出现次数<strong>O(n)</strong>+Object.values<strong>O(n)</strong>+遍历hash<strong>O(n)</strong>=3O(n)=O(n)</p>
 <ul>
-<li>空间复杂度：O(n)。</li>
+<li>空间复杂度：O(1)。</li>
 </ul>
-<p>combin函数中的c经历了一层循环，空间复杂度即为O(n)</p>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -221,7 +231,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结果"><span class="toc-text">结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复杂度分析："><span class="toc-text">复杂度分析：</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#求最大公约数的方法"><span class="toc-text">求最大公约数的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结果"><span class="toc-text">结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复杂度分析："><span class="toc-text">复杂度分析：</span></a></li></ol>
   </div>
 </aside>
   
@@ -230,7 +240,7 @@
       
         <div>
           原文链接: 
-          <a href target="_blank">https://blog.lailailee.com/2019/10/01/2019-10-01-算法-[17] 电话号码的组合/</a>
+          <a href target="_blank">https://blog.lailailee.com/2019/10/02/2019-10-01-算法-[914] 卡牌分组/</a>
         </div>
       
       <div>
@@ -333,10 +343,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/2019/10/02/2019-10-01-算法-[914] 卡牌分组/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/2019/09/30/2019-09-30-算法-[696] 计数二进制子串/" data-enable="true">
+    <a href="/2019/10/01/2019-10-01-算法-[17] 电话号码的组合/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
