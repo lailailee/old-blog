@@ -6,16 +6,16 @@
   <meta name="author" content="Dong Yuanxin">
   
   
-  <title>归档: 2019 | lailailee&#39;s blog</title>
+  <title>[605] 种花问题( Can Place Flowers ) | lailailee&#39;s blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, Theme-AD">
+    <meta name="keywords" content="算法,算法,LeetCode,">
   
 
   
-  <meta name="description" content="lailailee&#39;s blog">
+  <meta name="description" content="假设你有一个很长的花坛，一部分地块种植了花，另一部分却没有。可是，花卉不能种植在相邻的地块上，它们会争夺水源，两者都会死去。给定一个花坛（表示为一个数组包含0和1，其中0表示没种植花，1表示种植了花），和一个数 n 。能否在不打破种植规则的情况下种入 n 朵花？能则返回True，不能则返回False。">
 
   
 
@@ -42,7 +42,7 @@
     welcome: {"enable":true,"interval":30},
     start_time: "2019-05-08",
     passwords: ["efe07af7441da2b69c4a41e42e73be4db47f66010a56900788a458354a7373ec", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "Dong Yuanxin",
     share: {"twitter":false,"facebook":false,"weibo":false,"qq":false,"wechat":false},
@@ -160,73 +160,102 @@
 </nav>
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">归档: 22篇</h2>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-10-02
+    </span>
+    
+      <span>
+        | <a href="/categories/算法/"><i class="fa fa-bookmark"></i>算法</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    [605] 种花问题( Can Place Flowers )
+  </h1>
   
-    
-      <h3 class="timeline-subtitle">2019</h3>
-    
-    <div class="timeline-item">
-      <time>2019-10-02</time>
-      <a target="_self" href="/2019/10/02/2019-10-01-算法-[605] 种花问题/">[605] 种花问题( Can Place Flowers )</a>
-    </div>
+  <article class="passage-article">
+    <ul>
+<li><p>类型：数组类</p>
+</li>
+<li><p>难度: 简单</p>
+</li>
+</ul>
+<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h4><p>假设你有一个很长的花坛，一部分地块种植了花，另一部分却没有。可是，花卉不能种植在相邻的地块上，它们会争夺水源，两者都会死去。</p>
+<p>给定一个花坛（表示为一个数组包含0和1，其中0表示没种植花，1表示种植了花），和一个数 n 。能否在不打破种植规则的情况下种入 n 朵花？能则返回True，不能则返回False。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><p><strong>示例一:</strong></p>
+<p>输入: flowerbed = [1,0,0,0,1], n = 1</p>
+<p>输出: True</p>
+<p><strong>示例二:</strong></p>
+<p>输入: flowerbed = [1,0,0,0,1], n = 2</p>
+<p>输出: False</p>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>给数组两端各加0为边界</li>
+<li>使用reduce遍历数组，并判断当前是否为0，两侧是否为0，如果满足，累加器加1，并修改当前值为1</li>
+<li>注意遍历的时候要避开第一位和最后一位，它们只是辅助元素</li>
+</ol>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; flowerbed</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; n</span></span><br><span class="line"><span class="comment"> * @return &#123;boolean&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> canPlaceFlowers = <span class="function"><span class="keyword">function</span> (<span class="params">flowerbed, n</span>) </span>&#123;</span><br><span class="line">  flowerbed = [<span class="number">0</span>, ...flowerbed, <span class="number">0</span>]</span><br><span class="line">  <span class="keyword">return</span> flowerbed.reduce(<span class="function">(<span class="params">pre, curValue, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (index === <span class="number">0</span> || index === flowerbed.length - <span class="number">1</span>) <span class="keyword">return</span> pre</span><br><span class="line">    <span class="keyword">if</span> (curValue === <span class="number">0</span> &amp;&amp; flowerbed[index - <span class="number">1</span>] === <span class="number">0</span> &amp;&amp; flowerbed[index + <span class="number">1</span>] === <span class="number">0</span>) &#123;</span><br><span class="line">      pre++</span><br><span class="line">      flowerbed[index] = <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pre</span><br><span class="line">  &#125;, <span class="number">0</span>) &gt;= n</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/leetcode-605.png" alt></p>
+<h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><ul>
+<li>时间复杂度：O(n)，</li>
+</ul>
+<p>只需要遍历一遍flowerbed数组，所以时间复杂度是O(n)</p>
+<ul>
+<li>空间复杂度：O(1)。</li>
+</ul>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结果"><span class="toc-text">结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复杂度分析："><span class="toc-text">复杂度分析：</span></a></li></ol>
+  </div>
+</aside>
   
-    
-    <div class="timeline-item">
-      <time>2019-10-02</time>
-      <a target="_self" href="/2019/10/02/2019-10-01-算法-[914] 卡牌分组/">[914] 卡牌分组( X of a Kind in a Deck of Cards)</a>
-    </div>
+    <aside class="passage-copyright">
+      <div>本文作者: lailailee</div>
+      
+        <div>
+          原文链接: 
+          <a href target="_blank">https://blog.lailailee.com/2019/10/02/2019-10-01-算法-[605] 种花问题/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
   
-    
-    <div class="timeline-item">
-      <time>2019-10-01</time>
-      <a target="_self" href="/2019/10/01/2019-10-01-算法-[17] 电话号码的组合/">[17] 电话号码的组合(Letter Combinations of a Phone Number)</a>
-    </div>
   
+    <div class="passage-tags">
+     
+      <a href="/tags/算法/"><i class="fa fa-tags"></i>算法</a>
+     
+      <a href="/tags/LeetCode/"><i class="fa fa-tags"></i>LeetCode</a>
     
-    <div class="timeline-item">
-      <time>2019-09-30</time>
-      <a target="_self" href="/2019/09/30/2019-09-30-算法-[696] 计数二进制子串/">[696] 计数二进制子串( Count Binary Substrings)</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-09-29</time>
-      <a target="_self" href="/2019/09/29/2019-09-29-算法-[557] 反转字符串中的单词 III/">[557] 反转字符串中的单词 III(Reverse Words in a String III)</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-09-22</time>
-      <a target="_self" href="/2019/09/22/2019-09-22-算法-[13] 罗马数字转整数/">[13] 罗马数字转整数(Roman to Integer)</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-09-21</time>
-      <a target="_self" href="/2019/09/21/2019-09-21-算法-[66] 加一/">[66] 加一</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-09-20</time>
-      <a target="_self" href="/2019/09/20/2019-09-20-算法-LeetCode刷题记录/">[置顶]LeetCode刷题记录</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-09-20</time>
-      <a target="_self" href="/2019/09/20/2019-09-20-算法-[1] 两数之和/">[1] 两数之和</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-07-09</time>
-      <a target="_self" href="/2019/07/09/2019-07-09-设计模式-迭代器模式/">设计模式-迭代器模式</a>
     </div>
   
 </div>
+
     </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
     
     <div class="site-footer-wrapper">
   <footer class="site-footer">
@@ -303,16 +332,16 @@
     <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/archives/2019/page/2/" data-enable="true">
+    <a href="/2019/10/02/2019-10-01-算法-[914] 卡牌分组/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     
-      <a href="javascript:void(0);" data-enable="false">
+      <a href="#site-comment" data-enable="true">
         <i class="fa fa-commenting"></i>
       </a>
     
