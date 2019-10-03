@@ -6,7 +6,7 @@
   <meta name="author" content="Dong Yuanxin">
   
   
-  <title>[914] 卡牌分组( X of a Kind in a Deck of Cards) | lailailee&#39;s blog</title>
+  <title>[459] 重复的子字符串(Repeated Substring Pattern) | lailailee&#39;s blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="给定一副牌，每张牌上都写着一个整数。此时，你需要选定一个数字 X，使我们可以将整副牌按下述规则分成 1 组或更多组：">
+  <meta name="description" content="给定一个非空的字符串，判断它是否可以由它的一个子串重复多次构成。给定的字符串只含有小写英文字母，并且长度不超过10000。">
 
   
 
@@ -164,7 +164,7 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2019-10-02
+      <i class="fa fa-calendar"></i>2019-10-04
     </span>
     
       <span>
@@ -178,54 +178,42 @@
     
   </div>
   <h1 class="passage-title">
-    [914] 卡牌分组( X of a Kind in a Deck of Cards)
+    [459] 重复的子字符串(Repeated Substring Pattern)
   </h1>
   
   <article class="passage-article">
     <ul>
-<li><p>类型：字符串类</p>
+<li><p>类型：正则类</p>
 </li>
 <li><p>难度: 简单</p>
 </li>
 </ul>
-<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h4><p>给定一副牌，每张牌上都写着一个整数。</p>
-<p>此时，你需要选定一个数字 X，使我们可以将整副牌按下述规则分成 1 组或更多组：</p>
-<ul>
-<li>每组都有 X 张牌。</li>
-<li>组内所有的牌上都写着相同的整数。</li>
-</ul>
-<p>仅当你可选的 X &gt;= 2 时返回 true。</p>
+<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h4><p>给定一个非空的字符串，判断它是否可以由它的一个子串重复多次构成。给定的字符串只含有小写英文字母，并且长度不超过10000。</p>
 <h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><p><strong>示例一:</strong></p>
-<p>输入：[1,2,3,4,4,3,2,1]</p>
-<p>输出：true</p>
-<p>解释：可行的分组是 [1,1]，[2,2]，[3,3]，[4,4]</p>
+<p>输入: “abab”</p>
+<p>输出: True</p>
+<p>解释: 可由子字符串 “ab” 重复两次构成。</p>
 <p><strong>示例二:</strong></p>
-<p>输入：[1,1,1,2,2,2,3,3]</p>
-<p>输出：false</p>
-<p>解释：没有满足要求的分组。</p>
-<p><strong>示例三:</strong></p>
-<p>输入：[1]</p>
-<p>输出：false</p>
-<p>解释：没有满足要求的分组。</p>
-<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>观察：此题大意是要求出输入数字的出现次数并求出他们的最大公约数</p>
-<ol>
-<li>使用Array.reduce()得出各个数字的出现次数，接下来求他们的最大公约数   </li>
-<li>Object.values()获得出现次数的数组，可以有去重的操作Array.from(new Set(array))</li>
-<li>这时得到的数组的第一位即为最小出现次数，该次数等于1时不符合题意（X &gt;= 2），并且我们求得的公约数也不应该大于此数</li>
+<p>输入: “aba”</p>
+<p>输出: False</p>
+<h4 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h4><ol>
+<li>捕获括号</li>
+<li>regexp.test(string)</li>
 </ol>
-<h4 id="求最大公约数的方法"><a href="#求最大公约数的方法" class="headerlink" title="求最大公约数的方法"></a>求最大公约数的方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">    start[开始] --&gt; inputZ[输入a,b a&gt;b]</span><br><span class="line">    inputZ --&gt; inputN[c=a%b] </span><br><span class="line">    inputN  --&gt; conditionB&#123;c=0?&#125;</span><br><span class="line">    conditionB -- YES --&gt; inputB[b为a和b的最大公约数]</span><br><span class="line">    inputB --&gt; inputC[输出b]</span><br><span class="line">    conditionB -- NO --&gt; inputD[a=b,b=a%b]</span><br><span class="line">    inputD --&gt;inputN</span><br><span class="line">    inputC --&gt; stop[结束]</span><br></pre></td></tr></table></figure>
-<p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/leetcode-914.jpg" alt="image"></p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hasGroupsSizeX = <span class="function"><span class="keyword">function</span> (<span class="params">deck</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//得出各个数字的出现次数，接下来求他们的公约数</span></span><br><span class="line">  <span class="keyword">let</span> hash = deck.reduce(<span class="function">(<span class="params">preArr, curValue</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!preArr[curValue]) &#123;</span><br><span class="line">      preArr[curValue] = <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      preArr[curValue]++</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> preArr</span><br><span class="line">  &#125;, &#123;&#125;)</span><br><span class="line">  <span class="comment">//因为要求公约数，所以完全可以去重 tips:通过Object.values得到的结果一定是排了序的</span></span><br><span class="line">  <span class="comment">// hash = Array.from(new Set(Object.values(hash)))</span></span><br><span class="line">  hash = <span class="built_in">Object</span>.values(hash)</span><br><span class="line">  <span class="comment">//获取公约数的函数</span></span><br><span class="line">  <span class="keyword">let</span> getPublic = <span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//其实第一遍都知道b不可能为0，目的就是把a%b的余数带入下一步递归好做判断</span></span><br><span class="line">    <span class="keyword">if</span> (b === <span class="number">0</span>) <span class="keyword">return</span> a</span><br><span class="line">    <span class="keyword">return</span> getPublic(b, a % b)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//这里要获取一波最小值，这个最小值就是我们要求到的公约数的最大值，并且如果公约数等于1的话，不符合题中条件，需要单独进行判断</span></span><br><span class="line">  <span class="keyword">if</span> (hash[<span class="number">0</span>] === <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  <span class="keyword">let</span> min = hash[<span class="number">0</span>]</span><br><span class="line">  <span class="keyword">return</span> !hash.some(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> getPublic(min, item) === <span class="number">1</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><p>执行用时 :68 ms, 在所有 JavaScript 提交中击败了99.48%的用户</p>
-<p>内存消耗 :35.6 MB 在所有 JavaScript 提交中击败了77.56%的用户</p>
-<h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><ul>
-<li>时间复杂度：O(n)，</li>
-</ul>
-<p>得出各个数字的出现次数<strong>O(n)</strong>+Object.values<strong>O(n)</strong>+遍历hash<strong>O(n)</strong>=3O(n)=O(n)</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp" target="_blank" rel="noopener">参考MDN</a> </p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;string&#125; s</span></span><br><span class="line"><span class="comment"> * @return &#123;boolean&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> repeatedSubstringPattern = <span class="function"><span class="keyword">function</span> (<span class="params">s</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="regexp">/^(\w+)\1+$/</span>.test(s)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><p>Accepted</p>
 <ul>
-<li>空间复杂度：O(1)。</li>
+<li>120/120 cases passed (100 ms)</li>
+<li>Your runtime beats 78.18 % of javascript submissions</li>
+<li>Your memory usage beats 34.53 % of javascript submissions (36.4 MB)</li>
 </ul>
-<!--[Blog](https://blog.lailailee.com/2019/09/20/2019-09-20-%E7%AE%97%E6%B3%95-[1]%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/)-->
+<h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><ul>
+<li><p>时间复杂度：O(1)，</p>
+</li>
+<li><p>空间复杂度：O(1)。</p>
+</li>
+</ul>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -233,7 +221,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#求最大公约数的方法"><span class="toc-text">求最大公约数的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结果"><span class="toc-text">结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复杂度分析："><span class="toc-text">复杂度分析：</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#知识点"><span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结果"><span class="toc-text">结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复杂度分析："><span class="toc-text">复杂度分析：</span></a></li></ol>
   </div>
 </aside>
   
@@ -242,7 +230,7 @@
       
         <div>
           原文链接: 
-          <a href target="_blank">https://blog.lailailee.com/2019/10/02/2019-10-01-算法-[914] 卡牌分组/</a>
+          <a href target="_blank">https://blog.lailailee.com/2019/10/04/2019-10-04-算法-[459] 重复的子字符串/</a>
         </div>
       
       <div>
@@ -345,10 +333,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/2019/10/04/2019-10-01-算法-[58] 格雷编码/" data-enable="true">
+    <a href="/2019/10/04/2019-10-04-算法-[58] 格雷编码/" data-enable="true">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/2019/10/02/2019-10-01-算法-[605] 种花问题/" data-enable="true">
+    <a href="/2019/10/02/2019-10-02-算法-[914] 卡牌分组/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
