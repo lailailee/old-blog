@@ -6,7 +6,7 @@
   <meta name="author" content="Dong Yuanxin">
   
   
-  <title>[17] 电话号码的组合(Letter Combinations of a Phone Number) | lailailee&#39;s blog</title>
+  <title>[58] 格雷编码(Gray Code) | lailailee&#39;s blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。">
+  <meta name="description" content="格雷编码是一个二进制数字系统，在该系统中，两个连续的数值仅有一个位数的差异。给定一个代表编码总位数的非负整数 n，打印其格雷编码序列。格雷编码序列必须以 0 开头。">
 
   
 
@@ -164,7 +164,7 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2019-10-01
+      <i class="fa fa-calendar"></i>2019-10-04
     </span>
     
       <span>
@@ -178,7 +178,7 @@
     
   </div>
   <h1 class="passage-title">
-    [17] 电话号码的组合(Letter Combinations of a Phone Number)
+    [58] 格雷编码(Gray Code)
   </h1>
   
   <article class="passage-article">
@@ -188,32 +188,52 @@
 <li><p>难度: 中等</p>
 </li>
 </ul>
-<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h4><p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。</p>
-<p>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
-<p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/leetcode-17.png" alt="image"></p>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><p>输入：”23”</p>
-<p>输出：[“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].</p>
-<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
-<li>这道题可以用递归，也可以用三层循环遍历来做，总之时间复杂度都是O(n^3)</li>
-<li>我这里采用三层遍历的方法，将传入数字转化为字符串数组并进行遍历，</li>
-<li>对字符串数组的每一项与其下一项进行合并，并把合并后的值赋给下一项</li>
-<li>以此类推直到最后一项结束，返回数组最后一项的内容，即为本题的解</li>
+<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h4><p>格雷编码是一个二进制数字系统，在该系统中，两个连续的数值仅有一个位数的差异。</p>
+<p>给定一个代表编码总位数的非负整数 n，打印其格雷编码序列。格雷编码序列必须以 0 开头。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><p><strong>示例一:</strong></p>
+<p>输入: 2</p>
+<p>输出: [0,1,3,2]</p>
+<p>解释:</p>
+<p>00 - 0</p>
+<p>01 - 1</p>
+<p>11 - 3</p>
+<p>10 - 2</p>
+<p>对于给定的 n，其格雷编码序列并不唯一。</p>
+<p>例如，[0,2,3,1] 也是一个有效的格雷编码序列。</p>
+<p>00 - 0</p>
+<p>10 - 2</p>
+<p>11 - 3</p>
+<p>01 - 1</p>
+<p><strong>示例二:</strong></p>
+<p>输入: 0</p>
+<p>输出: [0]</p>
+<p>解释: 我们定义格雷编码序列必须以 0 开头。</p>
+<pre><code>给定编码总位数为 n 的格雷编码序列，其长度为 2n。当 n = 0 时，长度为 20 = 1。
+
+因此，当 n = 0 时，其格雷编码序列为 [0]。
+</code></pre><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/leetcode-58.jpg" alt="image"></p>
+<p>观察得出n的结果是n-1的结果先是正序前面加了个0，后是倒序前面加了个1，针对这个规律，所做解法步骤如下：</p>
+<ol>
+<li>创建getCode函数，传入n返回相应位数的二进制格雷编码数组</li>
+<li>创建getCombin函数，传入一个二进制格雷编码数组，将其与[0,1]以我观察到的规律进行合并并返回</li>
+<li>边界条件，当n=0时，返回[0]，当n=1时，返回[0,1]</li>
+<li>当n&gt;1时，返回getCombin(getCode(n - 1))的值，即为[0,1]与n-1时的二进制格雷编码的合并，层层递归直到是n=1时的返回[0,1]后，逐渐向后回溯</li>
+<li>将二进制格雷编码数组转化为十进制格雷编码数组</li>
 </ol>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> letterCombinations = <span class="function"><span class="keyword">function</span> (<span class="params">digits</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> obj = &#123;</span><br><span class="line">    <span class="number">2</span>: <span class="string">'abc'</span>,</span><br><span class="line">    <span class="number">3</span>: <span class="string">'def'</span>,</span><br><span class="line">    <span class="number">4</span>: <span class="string">'ghi'</span>,</span><br><span class="line">    <span class="number">5</span>: <span class="string">'jkl'</span>,</span><br><span class="line">    <span class="number">6</span>: <span class="string">'mno'</span>,</span><br><span class="line">    <span class="number">7</span>: <span class="string">'pqrs'</span>,</span><br><span class="line">    <span class="number">8</span>: <span class="string">'tuv'</span>,</span><br><span class="line">    <span class="number">9</span>: <span class="string">'wxyz'</span>,</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> combin = <span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> c = []</span><br><span class="line">    a.forEach(<span class="function">(<span class="params">itema</span>) =&gt;</span> &#123;</span><br><span class="line">      b.forEach(<span class="function">(<span class="params">itemb</span>) =&gt;</span> &#123;</span><br><span class="line">        c.push(itema + itemb)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (digits.length === <span class="number">0</span>) <span class="keyword">return</span> []</span><br><span class="line">  digits = digits.split(<span class="string">''</span>).map(<span class="function"><span class="params">e</span> =&gt;</span> obj[e].split(<span class="string">''</span>))</span><br><span class="line">  <span class="keyword">let</span> len = digits.length</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++) &#123;</span><br><span class="line">    digits[i + <span class="number">1</span>] = combin(digits[i], digits[i + <span class="number">1</span>])</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> digits[len - <span class="number">1</span>]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; n</span></span><br><span class="line"><span class="comment"> * @return &#123;number[]&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> grayCode = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> getCombin = <span class="function">(<span class="params">a</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> c = []</span><br><span class="line">    a.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">      c.push(<span class="string">'0'</span> + item)</span><br><span class="line">    &#125;)</span><br><span class="line">    a.reverse().forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">      c.push(<span class="string">'1'</span> + item)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 使用递归合并返回值</span></span><br><span class="line">  <span class="keyword">let</span> getCode = <span class="function">(<span class="params">n</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//题中的边界条件</span></span><br><span class="line">    <span class="keyword">if</span> (n === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> [<span class="number">0</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (n === <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> getCombin(getCode(n - <span class="number">1</span>))</span><br><span class="line">      <span class="comment">// 3</span></span><br><span class="line">      <span class="comment">// getCombin(getCode(2))</span></span><br><span class="line">      <span class="comment">// getCombin(getCombin(getCode(1))))</span></span><br><span class="line">      <span class="comment">// getCombin(getCombin([0,1]))</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//最后把每一项转化为二进制</span></span><br><span class="line">  <span class="keyword">return</span> getCode(n).map(<span class="function"><span class="params">item</span> =&gt;</span> <span class="built_in">parseInt</span>(item, <span class="number">2</span>))</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><p>Accepted</p>
 <ul>
-<li>25/25 cases passed (56 ms)</li>
-<li>Your runtime beats 99.18 % of javascript submissions</li>
-<li>Your memory usage beats 50.66 % of javascript submissions (33.6 MB)</li>
+<li>12/12 cases passed (60 ms)</li>
+<li>Your runtime beats 98.62 % of javascript submissions</li>
+<li>Your memory usage beats 27.78 % of javascript submissions (34.1 MB)</li>
 </ul>
 <h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><ul>
-<li>时间复杂度：O(n^3)，</li>
+<li>时间复杂度：O(n)，</li>
 </ul>
-<p>总共要经历三个循环，时间复杂度为O(n^3)</p>
+<p>递归n层，所以时间复杂度是O(n)</p>
 <ul>
 <li>空间复杂度：O(n)。</li>
 </ul>
-<p>combin函数中的c经历了一层循环，空间复杂度即为O(n)</p>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -230,7 +250,7 @@
       
         <div>
           原文链接: 
-          <a href target="_blank">https://blog.lailailee.com/2019/10/01/2019-10-01-算法-[17] 电话号码的组合/</a>
+          <a href target="_blank">https://blog.lailailee.com/2019/10/04/2019-10-01-算法-[58] 格雷编码/</a>
         </div>
       
       <div>
@@ -333,10 +353,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/2019/10/02/2019-10-01-算法-[605] 种花问题/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/2019/09/30/2019-09-30-算法-[696] 计数二进制子串/" data-enable="true">
+    <a href="/2019/10/02/2019-10-01-算法-[914] 卡牌分组/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
