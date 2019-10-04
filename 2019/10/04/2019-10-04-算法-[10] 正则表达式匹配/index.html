@@ -6,7 +6,7 @@
   <meta name="author" content="Dong Yuanxin">
   
   
-  <title>[58] 格雷编码(Gray Code) | lailailee&#39;s blog</title>
+  <title>[10] 正则表达式匹配(Regular Expression Matching) | lailailee&#39;s blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="格雷编码是一个二进制数字系统，在该系统中，两个连续的数值仅有一个位数的差异。给定一个代表编码总位数的非负整数 n，打印其格雷编码序列。格雷编码序列必须以 0 开头。">
+  <meta name="description" content="给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 ‘.’ 和 ‘‘ 的正则表达式匹配。给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 ‘.’ 和 ‘‘ 的正则表达式匹配。">
 
   
 
@@ -178,60 +178,59 @@
     
   </div>
   <h1 class="passage-title">
-    [58] 格雷编码(Gray Code)
+    [10] 正则表达式匹配(Regular Expression Matching)
   </h1>
   
   <article class="passage-article">
     <ul>
-<li><p>类型：数组类</p>
+<li><p>类型：正则类</p>
 </li>
-<li><p>难度: 中等</p>
+<li><p>难度: 困难</p>
 </li>
 </ul>
-<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h4><p>格雷编码是一个二进制数字系统，在该系统中，两个连续的数值仅有一个位数的差异。</p>
-<p>给定一个代表编码总位数的非负整数 n，打印其格雷编码序列。格雷编码序列必须以 0 开头。</p>
+<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h4><p>给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 ‘.’ 和 ‘*’ 的正则表达式匹配。</p>
+<ul>
+<li>‘.’ 匹配任意单个字符</li>
+<li>‘*’ 匹配零个或多个前面的那一个元素</li>
+</ul>
+<p>所谓匹配，是要涵盖 整个 字符串 s的，而不是部分字符串。</p>
+<p>说明:</p>
+<p>s 可能为空，且只包含从 a-z 的小写字母。</p>
+<p>p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。</p>
 <h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><p><strong>示例一:</strong></p>
-<p>输入: 2</p>
-<p>输出: [0,1,3,2]</p>
-<p>解释:</p>
-<p>00 - 0</p>
-<p>01 - 1</p>
-<p>11 - 3</p>
-<p>10 - 2</p>
-<p>对于给定的 n，其格雷编码序列并不唯一。</p>
-<p>例如，[0,2,3,1] 也是一个有效的格雷编码序列。</p>
-<p>00 - 0</p>
-<p>10 - 2</p>
-<p>11 - 3</p>
-<p>01 - 1</p>
+<p>输入:<br>s = “aa”</p>
+<p>p = “a”</p>
+<p>输出: false</p>
+<p>解释: “a” 无法匹配 “aa” 整个字符串。</p>
 <p><strong>示例二:</strong></p>
-<p>输入: 0</p>
-<p>输出: [0]</p>
-<p>解释: 我们定义格雷编码序列必须以 0 开头。</p>
-<pre><code>给定编码总位数为 n 的格雷编码序列，其长度为 2n。当 n = 0 时，长度为 20 = 1。
-
-因此，当 n = 0 时，其格雷编码序列为 [0]。
-</code></pre><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/leetcode-58.jpg" alt="image"></p>
-<p>观察得出n的结果是n-1的结果先是正序前面加了个0，后是倒序前面加了个1，针对这个规律，所做解法步骤如下：</p>
+<p>输入:</p>
+<p>s = “aa”</p>
+<p>p = “a*”</p>
+<p>输出: true</p>
+<p>解释: 因为 ‘*’ 代表可以匹配零个或多个前面的那一个元素, 在这里前面的元素就是 ‘a’。因此，字符串 “aa” 可被视为 ‘a’ 重复了一次。</p>
+<p><strong>示例三:</strong></p>
+<p>输入:</p>
+<p>s = “mississippi”</p>
+<p>p = “mis<em>is</em>p*.”</p>
+<p>输出: false</p>
+<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>观察可知s，p的比对有三种情况，第一种纯字符比较，第二种’.’与字符的比较，第三种是带有’*’的模式比较</p>
 <ol>
-<li>创建getCode函数，传入n返回相应位数的二进制格雷编码数组</li>
-<li>创建getCombin函数，传入一个二进制格雷编码数组，将其与[0,1]以我观察到的规律进行合并并返回</li>
-<li>边界条件，当n=0时，返回[0]，当n=1时，返回[0,1]</li>
-<li>当n&gt;1时，返回getCombin(getCode(n - 1))的值，即为[0,1]与n-1时的二进制格雷编码的合并，层层递归直到是n=1时的返回[0,1]后，逐渐向后回溯</li>
-<li>将二进制格雷编码数组转化为十进制格雷编码数组</li>
+<li>定义基础返回条件，p的长度为0时，s的长度为0则表示匹配，s的长度不为0则表示不匹配</li>
+<li>定义状态match，即为第一个字符的互相比较，如果相等或p[0]为’.’则为true</li>
+<li>当p没有模式的时候，我们根据match的状态进行返回，如果match为false，直接返回false，如果为true，那么进行下一步的判断getIsMactch(s.slice(1), p.slice(1)</li>
+<li>当p有模式的时候，有两种情况：一是s*匹配0个字符，则进行getIsMactch(s, p.slice(2))，二是s*匹配1个字符，递归下去，用来表示s*匹配多个s*,这样如果match为false，直接返回false，如果为true，那么进行getIsMactch(s.slice(1), p)。这两种只要一个能成立就够了</li>
+<li>4中这样的判断是为了避免’a*a’这种测试用例的坑</li>
 </ol>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; n</span></span><br><span class="line"><span class="comment"> * @return &#123;number[]&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> grayCode = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> getCombin = <span class="function">(<span class="params">a</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> c = []</span><br><span class="line">    a.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">      c.push(<span class="string">'0'</span> + item)</span><br><span class="line">    &#125;)</span><br><span class="line">    a.reverse().forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">      c.push(<span class="string">'1'</span> + item)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 使用递归合并返回值</span></span><br><span class="line">  <span class="keyword">let</span> getCode = <span class="function">(<span class="params">n</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//题中的边界条件</span></span><br><span class="line">    <span class="keyword">if</span> (n === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> [<span class="number">0</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (n === <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> getCombin(getCode(n - <span class="number">1</span>))</span><br><span class="line">      <span class="comment">// 3</span></span><br><span class="line">      <span class="comment">// getCombin(getCode(2))</span></span><br><span class="line">      <span class="comment">// getCombin(getCombin(getCode(1))))</span></span><br><span class="line">      <span class="comment">// getCombin(getCombin([0,1]))</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//最后把每一项转化为二进制</span></span><br><span class="line">  <span class="keyword">return</span> getCode(n).map(<span class="function"><span class="params">item</span> =&gt;</span> <span class="built_in">parseInt</span>(item, <span class="number">2</span>))</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><a href="https://coding.imooc.com/lesson/315.html#mid=22127" target="_blank" rel="noopener">快乐动起来老师的算法课</a></p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> isMatch = <span class="function"><span class="keyword">function</span> (<span class="params">s, p</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> getIsMactch = <span class="function">(<span class="params">s, p</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//判断，如果传入p的长度为0，那么，必须s的长度也为0才会返回true</span></span><br><span class="line">    <span class="keyword">if</span> (p.length === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> !s.length</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//判断第一个字符是否相等</span></span><br><span class="line">    <span class="keyword">let</span> match = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">if</span> (s.length &gt; <span class="number">0</span> &amp;&amp; (s[<span class="number">0</span>] === p[<span class="number">0</span>] || p[<span class="number">0</span>] === <span class="string">'.'</span>)) &#123;</span><br><span class="line">      match = <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//p有模式的</span></span><br><span class="line">    <span class="keyword">if</span> (p.length &gt; <span class="number">1</span> &amp;&amp; p[<span class="number">1</span>] === <span class="string">"*"</span>) &#123;</span><br><span class="line">      <span class="comment">//第一种情况：s*匹配0个字符</span></span><br><span class="line">      <span class="comment">//第二种情况：s*匹配1个字符，递归下去，用来表示s*匹配多个s*</span></span><br><span class="line">      <span class="keyword">return</span> getIsMactch(s, p.slice(<span class="number">2</span>)) || (match &amp;&amp; getIsMactch(s.slice(<span class="number">1</span>), p))</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> (match &amp;&amp; getIsMactch(s.slice(<span class="number">1</span>), p.slice(<span class="number">1</span>)))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> getIsMactch(s, p)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><p>Accepted</p>
 <ul>
-<li>12/12 cases passed (60 ms)</li>
-<li>Your runtime beats 98.62 % of javascript submissions</li>
-<li>Your memory usage beats 27.78 % of javascript submissions (34.1 MB)</li>
+<li>447/447 cases passed (124 ms)</li>
+<li>Your runtime beats 46.68 % of javascript submissions</li>
+<li>Your memory usage beats 17.42 % of javascript submissions (37.2 MB)</li>
 </ul>
 <h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><ul>
-<li>时间复杂度：O(n)，</li>
-</ul>
-<p>递归n层，所以时间复杂度是O(n)</p>
-<ul>
+<li>时间复杂度：O(n)。</li>
 <li>空间复杂度：O(n)。</li>
 </ul>
   </article>
@@ -241,7 +240,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结果"><span class="toc-text">结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复杂度分析："><span class="toc-text">复杂度分析：</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路："><span class="toc-text">思路：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结果"><span class="toc-text">结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复杂度分析："><span class="toc-text">复杂度分析：</span></a></li></ol>
   </div>
 </aside>
   
@@ -250,7 +249,7 @@
       
         <div>
           原文链接: 
-          <a href target="_blank">https://blog.lailailee.com/2019/10/04/2019-10-04-算法-[58] 格雷编码/</a>
+          <a href target="_blank">https://blog.lailailee.com/2019/10/04/2019-10-04-算法-[10] 正则表达式匹配/</a>
         </div>
       
       <div>
@@ -353,10 +352,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/2019/10/04/2019-10-04-算法-[459] 重复的子字符串/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/2019/10/02/2019-10-02-算法-[914] 卡牌分组/" data-enable="true">
+    <a href="/2019/10/04/2019-10-04-算法-[459] 重复的子字符串/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
