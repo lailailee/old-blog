@@ -6,16 +6,16 @@
   <meta name="author" content="Dong Yuanxin">
   
   
-  <title>设计模式-适配器模式 | lailailee&#39;s blog</title>
+  <title>webpack入门(二)-入口(entry)&amp;出口(output) | lailailee&#39;s blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="设计模式笔记,设计模式,笔记,适配器模式,">
+    <meta name="keywords" content="webpack,webpack入门,">
   
 
   
-  <meta name="description" content="旧接口格式和使用者不兼容中间加一个适配器转换接口">
+  <meta name="description" content="lailailee&#39;s blog">
 
   
 
@@ -164,11 +164,11 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2019-05-23
+      <i class="fa fa-calendar"></i>2019-10-08
     </span>
     
       <span>
-        | <a href="/categories/设计模式笔记/"><i class="fa fa-bookmark"></i>设计模式笔记</a>
+        | <a href="/categories/webpack/"><i class="fa fa-bookmark"></i>webpack</a>
       </span>
     
     
@@ -178,20 +178,49 @@
     
   </div>
   <h1 class="passage-title">
-    设计模式-适配器模式
+    webpack入门(二)-入口(entry)&出口(output)
   </h1>
   
   <article class="passage-article">
-    <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><ul>
-<li>旧接口格式和使用者不兼容</li>
-<li>中间加一个适配器转换接口</li>
+    <h2 id="1-webpack演示deemo初始化–webpack的安装"><a href="#1-webpack演示deemo初始化–webpack的安装" class="headerlink" title="1.webpack演示deemo初始化–webpack的安装"></a>1.webpack演示deemo初始化–webpack的安装</h2><p><a href="https://github.com/lailailee/webpack-deemo" target="_blank" rel="noopener">github deemo仓库地址</a></p>
+<ol>
+<li>新建空文件夹,执行<code>npm init -y</code>快速初始化项目,此时项目中会出现<code>package.json</code>文件</li>
+<li>执行<code>yarn add webpack webpack-cli -D</code>,局部安装webpack和webpack-cli插件(4.0后两个插件分离开了)</li>
+<li>在<code>package.json</code>中添加scripts,这样执行<code>yarn build</code>或<code>npm run build</code>,即可使用webpack命令<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;  </span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"build"</span>: <span class="string">"webpack"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/webpack/step0.jpg" alt="image"></p>
+<h2 id="2-入口-entry"><a href="#2-入口-entry" class="headerlink" title="2.入口(entry)"></a>2.入口(entry)</h2><blockquote>
+<p>入口起点(entry point)指示 webpack 应该使用哪个模块，来作为构建其内部依赖图的开始</p>
+</blockquote>
+<ol>
+<li>新建<code>webpack.config.js</code>文件,这是webpack默认的配置文件</li>
+<li>新建<code>src</code>文件夹,在其中新建<code>inxdex.js</code>作为我们将要设定的入口文件,其内容为<code>console.log(&#39;hello webpack!!!&#39;)</code></li>
+<li><p>配置<code>webpack.config,js</code>文件内容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  entry: <span class="string">'./src/index.js'</span> <span class="comment">//这里只考虑单页面的情况</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = config</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行<code>npm run build</code>执行webpack命令,项目会默认在根目录下创建<code>dist</code>文件夹,其中有通过<code>src/index.js</code>转化来的默认名为<code>main.js</code>的压缩文件</p>
+</li>
+</ol>
+<p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/webpack/entry.jpg" alt="image"></p>
+<h2 id="3-出口-output"><a href="#3-出口-output" class="headerlink" title="3.出口(output)"></a>3.出口(output)</h2><blockquote>
+<p>output 属性告诉 webpack 在哪里输出它所创建的bundles，以及如何命名这些文件，默认值为 ./dist</p>
+</blockquote>
+<p>在 webpack 中配置 output 属性的最低要求是，将它的值设置为一个对象，包括以下两点：</p>
+<ul>
+<li><code>filename</code> 用于输出文件的文件名。</li>
+<li>目标输出目录 <code>path</code> 的绝对路径。</li>
 </ul>
-<h3 id="UML-类图"><a href="#UML-类图" class="headerlink" title="UML 类图"></a>UML 类图</h3><p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F.png" alt></p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Adaptee</span> </span>&#123;</span><br><span class="line">  specificRequest() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'德国标准插头'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Target</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.adaptee = <span class="keyword">new</span> Adaptee()</span><br><span class="line">  &#125;</span><br><span class="line">  request() &#123;</span><br><span class="line">    <span class="keyword">let</span> info = <span class="keyword">this</span>.adaptee.specificRequest()</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;info&#125;</span> - 转换器 - 中国标准插头`</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="keyword">let</span> login1 = <span class="keyword">new</span> Target()</span><br><span class="line">login1.request()</span><br></pre></td></tr></table></figure>
-<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ul>
-<li>封装旧接口</li>
-<li>vue computed</li>
-</ul>
+<p>在<code>webpack.config,js</code>中</p>
+<ol>
+<li>引入nodejs的path模块:<code>const path = require(&#39;path&#39;)</code></li>
+<li><p>在<code>config</code>中添加output模块:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  entry: <span class="string">'./src/index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">    path: path.join(__dirname, <span class="string">'./dist'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = config</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除<code>入口(entry)</code>中生成的<code>dist</code>文件夹,重新执行<code>npm run build</code>,在dist目录中生成了<code>bundle.js</code>文件</p>
+</li>
+</ol>
+<p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/webpack/output.jpg" alt="image"></p>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -199,7 +228,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UML-类图"><span class="toc-text">UML 类图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#场景"><span class="toc-text">场景</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-webpack演示deemo初始化–webpack的安装"><span class="toc-text">1.webpack演示deemo初始化–webpack的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-入口-entry"><span class="toc-text">2.入口(entry)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-出口-output"><span class="toc-text">3.出口(output)</span></a></li></ol>
   </div>
 </aside>
   
@@ -208,7 +237,7 @@
       
         <div>
           原文链接: 
-          <a href target="_blank">https://blog.lailailee.com/2019/05/23/2019-05-23-设计模式-适配器模式/</a>
+          <a href target="_blank">https://blog.lailailee.com/2019/10/08/2019-10-08-webpack-webpack入门(一)-webpack入门(二)-入口(entry)&出口(output)/</a>
         </div>
       
       <div>
@@ -219,11 +248,7 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/设计模式/"><i class="fa fa-tags"></i>设计模式</a>
-     
-      <a href="/tags/笔记/"><i class="fa fa-tags"></i>笔记</a>
-     
-      <a href="/tags/适配器模式/"><i class="fa fa-tags"></i>适配器模式</a>
+      <a href="/tags/webpack入门/"><i class="fa fa-tags"></i>webpack入门</a>
     
     </div>
   
@@ -313,10 +338,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/2019/05/26/2019-05-26-设计模式-代理模式/" data-enable="true">
+    <a href="/2019/10/08/2019-10-08-算法-[922] 按奇偶排序数组 II/" data-enable="true">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/2019/05/23/2019-05-23-设计模式-装饰器模式/" data-enable="true">
+    <a href="/2019/10/08/2019-10-08-算法-[215] 数组中的第K个最大元素/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
