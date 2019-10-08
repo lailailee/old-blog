@@ -6,16 +6,16 @@
   <meta name="author" content="Dong Yuanxin">
   
   
-  <title>[58] 格雷编码(Gray Code) | lailailee&#39;s blog</title>
+  <title>webpack入门(一)-入口(entry)&amp;出口(output) | lailailee&#39;s blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="算法,算法,LeetCode,">
+    <meta name="keywords" content="webpack,webpack入门,">
   
 
   
-  <meta name="description" content="格雷编码是一个二进制数字系统，在该系统中，两个连续的数值仅有一个位数的差异。给定一个代表编码总位数的非负整数 n，打印其格雷编码序列。格雷编码序列必须以 0 开头。">
+  <meta name="description" content="lailailee&#39;s blog">
 
   
 
@@ -164,11 +164,11 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2019-10-04
+      <i class="fa fa-calendar"></i>2019-10-08
     </span>
     
       <span>
-        | <a href="/categories/算法/"><i class="fa fa-bookmark"></i>算法</a>
+        | <a href="/categories/webpack/"><i class="fa fa-bookmark"></i>webpack</a>
       </span>
     
     
@@ -178,62 +178,49 @@
     
   </div>
   <h1 class="passage-title">
-    [58] 格雷编码(Gray Code)
+    webpack入门(一)-入口(entry)&出口(output)
   </h1>
   
   <article class="passage-article">
-    <ul>
-<li><p>类型：数组类</p>
-</li>
-<li><p>难度: 中等</p>
-</li>
-</ul>
-<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h4><p>格雷编码是一个二进制数字系统，在该系统中，两个连续的数值仅有一个位数的差异。</p>
-<p>给定一个代表编码总位数的非负整数 n，打印其格雷编码序列。格雷编码序列必须以 0 开头。</p>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><p><strong>示例一:</strong></p>
-<p>输入: 2</p>
-<p>输出: [0,1,3,2]</p>
-<p>解释:</p>
-<p>00 - 0</p>
-<p>01 - 1</p>
-<p>11 - 3</p>
-<p>10 - 2</p>
-<p>对于给定的 n，其格雷编码序列并不唯一。</p>
-<p>例如，[0,2,3,1] 也是一个有效的格雷编码序列。</p>
-<p>00 - 0</p>
-<p>10 - 2</p>
-<p>11 - 3</p>
-<p>01 - 1</p>
-<p><strong>示例二:</strong></p>
-<p>输入: 0</p>
-<p>输出: [0]</p>
-<p>解释: 我们定义格雷编码序列必须以 0 开头。</p>
-<pre><code>给定编码总位数为 n 的格雷编码序列，其长度为 2n。当 n = 0 时，长度为 20 = 1。
-
-因此，当 n = 0 时，其格雷编码序列为 [0]。
-</code></pre><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/leetcode-58.jpg" alt="image"></p>
-<p>观察得出n的结果是n-1的结果先是正序前面加了个0，后是倒序前面加了个1，针对这个规律，所做解法步骤如下：</p>
+    <h2 id="1-webpack演示deemo初始化–webpack的安装"><a href="#1-webpack演示deemo初始化–webpack的安装" class="headerlink" title="1.webpack演示deemo初始化–webpack的安装"></a>1.webpack演示deemo初始化–webpack的安装</h2><p><a href="https://github.com/lailailee/webpack-deemo" target="_blank" rel="noopener">github deemo仓库地址</a></p>
 <ol>
-<li>创建getCode函数，传入n返回相应位数的二进制格雷编码数组</li>
-<li>创建getCombin函数，传入一个二进制格雷编码数组，将其与[0,1]以我观察到的规律进行合并并返回</li>
-<li>边界条件，当n=0时，返回[0]，当n=1时，返回[0,1]</li>
-<li>当n&gt;1时，返回getCombin(getCode(n - 1))的值，即为[0,1]与n-1时的二进制格雷编码的合并，层层递归直到是n=1时的返回[0,1]后，逐渐向后回溯</li>
-<li>将二进制格雷编码数组转化为十进制格雷编码数组</li>
+<li>新建空文件夹,执行<code>npm init -y</code>快速初始化项目,此时项目中会出现<code>package.json</code>文件</li>
+<li>执行<code>yarn add webpack webpack-cli -D</code>,局部安装webpack和webpack-cli插件(4.0后两个插件分离开了)</li>
+<li>在<code>package.json</code>中添加scripts,这样执行<code>yarn build</code>或<code>npm run build</code>,即可使用webpack命令<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;  </span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"build"</span>: <span class="string">"webpack"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; n</span></span><br><span class="line"><span class="comment"> * @return &#123;number[]&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> grayCode = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> getCombin = <span class="function">(<span class="params">a</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> c = []</span><br><span class="line">    a.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">      c.push(<span class="string">'0'</span> + item)</span><br><span class="line">    &#125;)</span><br><span class="line">    a.reverse().forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">      c.push(<span class="string">'1'</span> + item)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 使用递归合并返回值</span></span><br><span class="line">  <span class="keyword">let</span> getCode = <span class="function">(<span class="params">n</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//题中的边界条件</span></span><br><span class="line">    <span class="keyword">if</span> (n === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> [<span class="number">0</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (n === <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> getCombin(getCode(n - <span class="number">1</span>))</span><br><span class="line">      <span class="comment">// 3</span></span><br><span class="line">      <span class="comment">// getCombin(getCode(2))</span></span><br><span class="line">      <span class="comment">// getCombin(getCombin(getCode(1))))</span></span><br><span class="line">      <span class="comment">// getCombin(getCombin([0,1]))</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//最后把每一项转化为二进制</span></span><br><span class="line">  <span class="keyword">return</span> getCode(n).map(<span class="function"><span class="params">item</span> =&gt;</span> <span class="built_in">parseInt</span>(item, <span class="number">2</span>))</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><p>Accepted</p>
+<p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/webpack/step0.jpg" alt="image"></p>
+<h2 id="2-入口-entry"><a href="#2-入口-entry" class="headerlink" title="2.入口(entry)"></a>2.入口(entry)</h2><blockquote>
+<p>入口起点(entry point)指示 webpack 应该使用哪个模块，来作为构建其内部依赖图的开始</p>
+</blockquote>
+<ol>
+<li>新建<code>webpack.config.js</code>文件,这是webpack默认的配置文件</li>
+<li>新建<code>src</code>文件夹,在其中新建<code>inxdex.js</code>作为我们将要设定的入口文件,其内容为<code>console.log(&#39;hello webpack!!!&#39;)</code></li>
+<li><p>配置<code>webpack.config,js</code>文件内容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  entry: <span class="string">'./src/index.js'</span> <span class="comment">//这里只考虑单页面的情况</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = config</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行<code>npm run build</code>执行webpack命令,项目会默认在根目录下创建<code>dist</code>文件夹,其中有通过<code>src/index.js</code>转化来的默认名为<code>main.js</code>的压缩文件</p>
+</li>
+</ol>
+<p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/webpack/entry.jpg" alt="image"></p>
+<h2 id="3-出口-output"><a href="#3-出口-output" class="headerlink" title="3.出口(output)"></a>3.出口(output)</h2><blockquote>
+<p>output 属性告诉 webpack 在哪里输出它所创建的bundles，以及如何命名这些文件，默认值为 ./dist</p>
+</blockquote>
+<p>在 webpack 中配置 output 属性的最低要求是，将它的值设置为一个对象，包括以下两点：</p>
 <ul>
-<li>12/12 cases passed (60 ms)</li>
-<li>Your runtime beats 98.62 % of javascript submissions</li>
-<li>Your memory usage beats 27.78 % of javascript submissions (34.1 MB)</li>
+<li><code>filename</code> 用于输出文件的文件名。</li>
+<li>目标输出目录 <code>path</code> 的绝对路径。</li>
 </ul>
-<h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><ul>
-<li>时间复杂度：O(n)，</li>
-</ul>
-<p>递归n层，所以时间复杂度是O(n)</p>
-<ul>
-<li>空间复杂度：O(n)。</li>
-</ul>
+<p>在<code>webpack.config,js</code>中</p>
+<ol>
+<li>引入nodejs的path模块:<code>const path = require(&#39;path&#39;)</code></li>
+<li><p>在<code>config</code>中添加output模块:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  entry: <span class="string">'./src/index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">    path: path.join(__dirname, <span class="string">'./dist'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = config</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除<code>入口(entry)</code>中生成的<code>dist</code>文件夹,重新执行<code>npm run build</code>,在dist目录中生成了<code>bundle.js</code>文件</p>
+</li>
+</ol>
+<p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/webpack/output.jpg" alt="image"></p>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -241,7 +228,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结果"><span class="toc-text">结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复杂度分析："><span class="toc-text">复杂度分析：</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-webpack演示deemo初始化–webpack的安装"><span class="toc-text">1.webpack演示deemo初始化–webpack的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-入口-entry"><span class="toc-text">2.入口(entry)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-出口-output"><span class="toc-text">3.出口(output)</span></a></li></ol>
   </div>
 </aside>
   
@@ -250,7 +237,7 @@
       
         <div>
           原文链接: 
-          <a href target="_blank">https://blog.lailailee.com/2019/10/04/2019-10-04-算法-[58] 格雷编码/</a>
+          <a href target="_blank">https://blog.lailailee.com/2019/10/08/2019-10-08-webpack-webpack入门(一)-webpack入门(一)-入口(entry)&出口(output)/</a>
         </div>
       
       <div>
@@ -261,9 +248,7 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/算法/"><i class="fa fa-tags"></i>算法</a>
-     
-      <a href="/tags/LeetCode/"><i class="fa fa-tags"></i>LeetCode</a>
+      <a href="/tags/webpack入门/"><i class="fa fa-tags"></i>webpack入门</a>
     
     </div>
   
@@ -353,10 +338,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/2019/10/04/2019-10-04-算法-[459] 重复的子字符串/" data-enable="true">
+    <a href="/2019/10/08/2019-10-08-算法-[215] 数组中的第K个最大元素/" data-enable="true">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/2019/10/04/2019-10-04-算法-[10] 正则表达式匹配/" data-enable="true">
+    <a href="/2019/10/06/2019-10-06-webpack-webpack入门(一)-webpack简介以及五大核心概念/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
