@@ -6,16 +6,16 @@
   <meta name="author" content="Dong Yuanxin">
   
   
-  <title>分类: 算法 | lailailee&#39;s blog</title>
+  <title>[922] 按奇偶排序数组 II(Sort Array By Parity II) | lailailee&#39;s blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, Theme-AD">
+    <meta name="keywords" content="算法,算法,LeetCode,排序类,">
   
 
   
-  <meta name="description" content="lailailee&#39;s blog">
+  <meta name="description" content="给定一个非负整数数组 A， A 中一半整数是奇数，一半整数是偶数。对数组进行排序，以便当 A[i] 为奇数时，i 也是奇数；当 A[i] 为偶数时， i 也是偶数。你可以返回任何满足上述条件的数组作为答案。">
 
   
 
@@ -42,7 +42,7 @@
     welcome: {"enable":true,"interval":30},
     start_time: "2019-05-08",
     passwords: ["efe07af7441da2b69c4a41e42e73be4db47f66010a56900788a458354a7373ec", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "Dong Yuanxin",
     share: {"twitter":false,"facebook":false,"weibo":false,"qq":false,"wechat":false},
@@ -160,73 +160,105 @@
 </nav>
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">系列: 算法</h2>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-10-08
+    </span>
+    
+      <span>
+        | <a href="/categories/算法/"><i class="fa fa-bookmark"></i>算法</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    [922] 按奇偶排序数组 II(Sort Array By Parity II)
+  </h1>
   
-    
-      <h3 class="timeline-subtitle">2019</h3>
-    
-    <div class="timeline-item">
-      <time>2019-10-08</time>
-      <a target="_self" href="/2019/10/08/2019-10-08-算法-[922] 按奇偶排序数组 II/">[922] 按奇偶排序数组 II(Sort Array By Parity II)</a>
-    </div>
+  <article class="passage-article">
+    <ul>
+<li><p>类型：排序类</p>
+</li>
+<li><p>难度: 简单</p>
+</li>
+</ul>
+<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h4><p>给定一个非负整数数组 A， A 中一半整数是奇数，一半整数是偶数。</p>
+<p>对数组进行排序，以便当 A[i] 为奇数时，i 也是奇数；当 A[i] 为偶数时， i 也是偶数。</p>
+<p>你可以返回任何满足上述条件的数组作为答案。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h4><p>输入：[4,2,5,7]</p>
+<p>输出：[4,5,2,7]</p>
+<p>解释：[4,7,2,5]，[2,5,4,7]，[2,7,4,5] 也会被接受。</p>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>使用sort()排序,此处没有优化空间</li>
+<li>遍历数组A,将奇偶数分别间隔插入到一个空数组中</li>
+</ol>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; A</span></span><br><span class="line"><span class="comment"> * @return &#123;number[]&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> sortArrayByParityII = <span class="function"><span class="keyword">function</span> (<span class="params">A</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (A.length &lt; <span class="number">2</span>) <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  A.sort()</span><br><span class="line">  <span class="keyword">let</span> res = []</span><br><span class="line">  <span class="keyword">let</span> odd = <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> even = <span class="number">0</span>  <span class="comment">//odd奇数 even偶数</span></span><br><span class="line">  A.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (item % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">      res[even] = item</span><br><span class="line">      even += <span class="number">2</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      res[odd] = item</span><br><span class="line">      odd += <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><p>Accepted</p>
+<ul>
+<li>61/61 cases passed (136 ms)</li>
+<li>Your runtime beats 81.68 % of javascript submissions</li>
+<li>Your memory usage beats 24.39 % of javascript submissions (41.1 MB)</li>
+</ul>
+<h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><ul>
+<li><p>时间复杂度：O(n^2)，</p>
+</li>
+<li><p>空间复杂度：O(n)。</p>
+</li>
+</ul>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#思路"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结果"><span class="toc-text">结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复杂度分析："><span class="toc-text">复杂度分析：</span></a></li></ol>
+  </div>
+</aside>
   
-    
-    <div class="timeline-item">
-      <time>2019-10-04</time>
-      <a target="_self" href="/2019/10/04/2019-10-04-算法-[58] 格雷编码/">[58] 格雷编码(Gray Code)</a>
-    </div>
+    <aside class="passage-copyright">
+      <div>本文作者: lailailee</div>
+      
+        <div>
+          原文链接: 
+          <a href target="_blank">https://blog.lailailee.com/2019/10/08/2019-10-08-算法-[922] 按奇偶排序数组 II/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
   
-    
-    <div class="timeline-item">
-      <time>2019-10-04</time>
-      <a target="_self" href="/2019/10/04/2019-10-04-算法-[459] 重复的子字符串/">[459] 重复的子字符串(Repeated Substring Pattern)</a>
-    </div>
   
+    <div class="passage-tags">
+     
+      <a href="/tags/算法/"><i class="fa fa-tags"></i>算法</a>
+     
+      <a href="/tags/LeetCode/"><i class="fa fa-tags"></i>LeetCode</a>
+     
+      <a href="/tags/排序类/"><i class="fa fa-tags"></i>排序类</a>
     
-    <div class="timeline-item">
-      <time>2019-10-04</time>
-      <a target="_self" href="/2019/10/04/2019-10-04-算法-[10] 正则表达式匹配/">[10] 正则表达式匹配(Regular Expression Matching)</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-10-02</time>
-      <a target="_self" href="/2019/10/02/2019-10-02-算法-[914] 卡牌分组/">[914] 卡牌分组( X of a Kind in a Deck of Cards)</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-10-02</time>
-      <a target="_self" href="/2019/10/02/2019-10-01-算法-[605] 种花问题/">[605] 种花问题( Can Place Flowers )</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-10-01</time>
-      <a target="_self" href="/2019/10/01/2019-10-01-算法-[17] 电话号码的组合/">[17] 电话号码的组合(Letter Combinations of a Phone Number)</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-09-30</time>
-      <a target="_self" href="/2019/09/30/2019-09-30-算法-[696] 计数二进制子串/">[696] 计数二进制子串( Count Binary Substrings)</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-09-29</time>
-      <a target="_self" href="/2019/09/29/2019-09-29-算法-[557] 反转字符串中的单词 III/">[557] 反转字符串中的单词 III(Reverse Words in a String III)</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-09-22</time>
-      <a target="_self" href="/2019/09/22/2019-09-22-算法-[13] 罗马数字转整数/">[13] 罗马数字转整数(Roman to Integer)</a>
     </div>
   
 </div>
+
     </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
     
     <div class="site-footer-wrapper">
   <footer class="site-footer">
@@ -303,16 +335,16 @@
     <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/categories/算法/page/2/" data-enable="true">
+    <a href="/2019/10/06/2019-10-06-webpack-webpack入门(一)-webpack简介以及五大核心概念/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     
-      <a href="javascript:void(0);" data-enable="false">
+      <a href="#site-comment" data-enable="true">
         <i class="fa fa-commenting"></i>
       </a>
     
