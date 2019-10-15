@@ -206,7 +206,7 @@
   </h1>
   
   <article class="passage-article">
-    <p><a href="https://github.com/lailailee/webpack4.0-advanced-deemo" target="_blank" rel="noopener">&gt;&gt;&gt;整个项目deemo</a></p>
+    <p><a href="https://github.com/lailailee/webpack4.0-advanced" target="_blank" rel="noopener">&gt;&gt;&gt;整个项目deemo</a></p>
 <h3 id="1-文件目录"><a href="#1-文件目录" class="headerlink" title="1.文件目录"></a>1.文件目录</h3><p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/webpack/loader-img/deemo01-01.jpg" alt="image"></p>
 <h3 id="2-代码处理"><a href="#2-代码处理" class="headerlink" title="2.代码处理"></a>2.代码处理</h3><ul>
 <li>在src中引入图片<code>avatar.jpg</code>,<code>index.js</code>,<code>index.html</code></li>
@@ -217,7 +217,7 @@
 </li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.js</span></span><br><span class="line"><span class="keyword">import</span> avatar <span class="keyword">from</span> <span class="string">'./avatar.jpg'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">img.src = avatar;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> root = <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>);</span><br><span class="line">root.append(img);</span><br></pre></td></tr></table></figure>
-<h3 id="3-JPG文件的加载"><a href="#3-JPG文件的加载" class="headerlink" title="3.JPG文件的加载"></a>3.JPG文件的加载</h3><p><a href="https://github.com/lailailee/webpack4.0-advanced-deemo/tree/master/deemo01-complex-img-onlyjpg" target="_blank" rel="noopener">&gt;&gt;&gt; deemo01</a></p>
+<h3 id="3-JPG文件的加载"><a href="#3-JPG文件的加载" class="headerlink" title="3.JPG文件的加载"></a>3.JPG文件的加载</h3><p><a href="https://github.com/lailailee/webpack4.0-advanced/tree/master/deemo01-complex-img-onlyjpg" target="_blank" rel="noopener">&gt;&gt;&gt; deemo01</a></p>
 <ul>
 <li>JPG文件的加载需要用到<code>file-loader</code>这个组件</li>
 </ul>
@@ -244,7 +244,7 @@
 <li>在浏览器中打开<code>./dist/index.html</code></li>
 </ul>
 <p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/webpack/loader-img/deemo01-06.jpg" alt="image"></p>
-<h2 id="4-进阶的需求"><a href="#4-进阶的需求" class="headerlink" title="4.进阶的需求"></a>4.进阶的需求</h2><p><a href="https://github.com/lailailee/webpack4.0-advanced-deemo/tree/master/deemo02-complex-img-more" target="_blank" rel="noopener">&gt;&gt;&gt; deemo02</a></p>
+<h2 id="4-进阶的需求"><a href="#4-进阶的需求" class="headerlink" title="4.进阶的需求"></a>4.进阶的需求</h2><p><a href="https://github.com/lailailee/webpack4.0-advanced/tree/master/deemo02-complex-img-more" target="_blank" rel="noopener">&gt;&gt;&gt; deemo02</a></p>
 <h4 id="1-需要打包过去的图片名称不变"><a href="#1-需要打包过去的图片名称不变" class="headerlink" title="1.  需要打包过去的图片名称不变"></a>1.  需要打包过去的图片名称不变</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'development'</span>,</span><br><span class="line">  entry: &#123;</span><br><span class="line">    main: <span class="string">'./src/index.js'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [&#123;</span><br><span class="line">      test: <span class="regexp">/\.jpg$/</span>,</span><br><span class="line">      use: &#123;</span><br><span class="line">        loader: <span class="string">'file-loader'</span>,</span><br><span class="line">        options: &#123;</span><br><span class="line">          name: <span class="string">'[name].[ext]'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在<code>file-loader</code>下面添加一个options的配置,如<code>name: &#39;[name].[ext]&#39;</code>,指的就是编译出的文件是相同的名称和后缀</p>
 <p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/webpack/loader-img/deemo02-01.jpg" alt="image"></p>
@@ -402,10 +402,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/2019/10/13/2019-10-13-webpack-webpack进阶(二)-Loader-打包样式(上)/" data-enable="true">
+    <a href="/2019/10/11/2019-10-11-算法-[164] 最大间距/" data-enable="true">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/2019/10/11/2019-10-11-算法-[164] 最大间距/" data-enable="true">
+    <a href="/2019/10/09/2019-10-09-webpack-webpack入门(五)-模式(modal) copy/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
