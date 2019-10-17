@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+  
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="author" content="lailailee">
+  
+  
+  <title>js基础知识 - 01.JS 基础知识点及常考面试题.md | lailailee&#39;s blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="js基础知识,js基础知识,">
+  
+
+  
+  <meta name="description" content=" 1. 原始类型有哪几种？null 是对象嘛？ 2. 对象类型和原始类型的不同之处？函数参数是对象会发生什么问题？ 3. typeof 是否能正确判断类型？instanceof 能正确判断对象的原理是什么？ 4. 类型转换 5. 如何正确判断 this？箭头函数的 this 是什么？">
+
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"vOg2yRfNoBJb2ecMuIW4tTGy-gzGzoHsz","appkey":"CkvHVQDvAXiy32ELbyxdAfCN","comment":true,"count":true},
+    welcome: {"enable":true,"interval":30},
+    start_time: "2019-05-08",
+    passwords: ["efe07af7441da2b69c4a41e42e73be4db47f66010a56900788a458354a7373ec", ],
+    is_post: true,
+    lock: false,
+    author: "lailailee",
+    share: {"twitter":false,"facebook":false,"weibo":false,"qq":false,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+  
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">LAILAILEE</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | KEEP LEARNING</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/categories/算法/" target="_self">LeetCode刷题</a>
+      
+        <a href="/categories/webpack/" target="_self">webpack</a>
+      
+        <a href="/categories/设计模式笔记/" target="_self">设计模式笔记</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+        <a href="/friends/" target="_self">友链</a>
+      
+        <a href="/about/" target="_self">关于</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lailailee/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/算法/" target="_self">
+            LeetCode刷题
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/webpack/" target="_self">
+            webpack
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/设计模式笔记/" target="_self">
+            设计模式笔记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/friends/" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-10-18
+    </span>
+    
+      <span>
+        | <a href="/categories/js基础知识/"><i class="fa fa-bookmark"></i>js基础知识</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    js基础知识 - 01.JS 基础知识点及常考面试题.md
+  </h1>
+  
+  <article class="passage-article">
+    <p><a href="https://github.com/lailailee/The-Road" target="_blank" rel="noopener">&gt;&gt;&gt;The-Road</a></p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 1. 原始类型有哪几种？null 是对象嘛？</li>
+<li style="list-style: none"><input type="checkbox"> 2. 对象类型和原始类型的不同之处？函数参数是对象会发生什么问题？</li>
+<li style="list-style: none"><input type="checkbox"> 3. typeof 是否能正确判断类型？instanceof 能正确判断对象的原理是什么？</li>
+<li style="list-style: none"><input type="checkbox"> 4. 类型转换</li>
+<li style="list-style: none"><input type="checkbox"> 5. 如何正确判断 this？箭头函数的 this 是什么？</li>
+</ul>
+<h4 id="1-原始类型有哪几种？null-是对象嘛？"><a href="#1-原始类型有哪几种？null-是对象嘛？" class="headerlink" title="1. 原始类型有哪几种？null 是对象嘛？"></a>1. 原始类型有哪几种？null 是对象嘛？</h4><ol>
+<li>原始类型:6 种,boolean,null,undefined,number,string,symbol</li>
+<li>虽然<code>typeof null=object</code>,但 null 不是对象,这只是个历史遗留问题</li>
+</ol>
+<h4 id="2-对象类型和原始类型的不同之处？函数参数是对象会发生什么问题？"><a href="#2-对象类型和原始类型的不同之处？函数参数是对象会发生什么问题？" class="headerlink" title="2. 对象类型和原始类型的不同之处？函数参数是对象会发生什么问题？"></a>2. 对象类型和原始类型的不同之处？函数参数是对象会发生什么问题？</h4><ol>
+<li>不同点是,原始类型存储是值,二对象类型存储的是地址</li>
+<li>函数参数是对象的题</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">person</span>) </span>&#123;</span><br><span class="line">  person.age = <span class="number">26</span></span><br><span class="line">  person = &#123;</span><br><span class="line">    name: <span class="string">'yyy'</span>,</span><br><span class="line">    age: <span class="number">30</span>,</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> person</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> p1 = &#123;</span><br><span class="line">  name: <span class="string">'yck'</span>,</span><br><span class="line">  age: <span class="number">25</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> p2 = test(p1)</span><br><span class="line"><span class="built_in">console</span>.log(p1) <span class="comment">// -&gt; &#123;name: 'yck',age: 26&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(p2) <span class="comment">// -&gt; &#123;name: 'yyy',age: 30&#125;</span></span><br></pre></td></tr></table></figure>
+<p><strong>解释</strong>:本来传递的是对象的地址,<code>person.age = 26</code>即修改了 p1 的 age 属性,然而<code>person = {name: &#39;yyy&#39;,age: 30 }</code>给了 person 一个新的地址,自此返回后的 person 已和 p1 无关</p>
+<h4 id="3-typeof-是否能正确判断类型？instanceof-能正确判断对象的原理是什么？"><a href="#3-typeof-是否能正确判断类型？instanceof-能正确判断对象的原理是什么？" class="headerlink" title="3. typeof 是否能正确判断类型？instanceof 能正确判断对象的原理是什么？"></a>3. typeof 是否能正确判断类型？instanceof 能正确判断对象的原理是什么？</h4><ol>
+<li>不能,对于原始类型,<code>typeof</code> 除了 null 返回的时 object 外,其他的都会准确显示其类型</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="number">1</span> <span class="comment">// 'number'</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="string">'1'</span> <span class="comment">// 'string'</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span> <span class="comment">// 'undefined'</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">true</span> <span class="comment">// 'boolean'</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">Symbol</span>() <span class="comment">// 'symbol'</span></span><br></pre></td></tr></table></figure>
+<p>对于引用类型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> [] <span class="comment">// 'object'</span></span><br><span class="line"><span class="keyword">typeof</span> &#123;&#125; <span class="comment">// 'object'</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">console</span>.log <span class="comment">// 'function'</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>instanceof 能正确判断引用类型(对象),因为内部机制是通过原型链来判断的</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Person = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">const</span> p1 = <span class="keyword">new</span> Person()</span><br><span class="line">p1 <span class="keyword">instanceof</span> Person <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'hello world'</span></span><br><span class="line">str <span class="keyword">instanceof</span> <span class="built_in">String</span> <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> str1 = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'hello world'</span>)</span><br><span class="line">str1 <span class="keyword">instanceof</span> <span class="built_in">String</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>对于原始类型，直接通过 instanceof 来判断类型是不行的,需要和 typeof 搭配使用</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PrimitiveString</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> [<span class="built_in">Symbol</span>.hasInstance](x) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> x === <span class="string">'string'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'hello world'</span> <span class="keyword">instanceof</span> PrimitiveString) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-类型转换"><a href="#4-类型转换" class="headerlink" title="4. 类型转换"></a>4. 类型转换</h4><p>JS 中类型转换只有三种情况:</p>
+<ul>
+<li>转换为布尔值</li>
+<li>转换为数字</li>
+<li>转换为字符串</li>
+</ul>
+<p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/TheRoad/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.jpg" alt="image"></p>
+<h6 id="1-对象转原始类型"><a href="#1-对象转原始类型" class="headerlink" title="1. 对象转原始类型"></a>1. 对象转原始类型</h6><ul>
+<li>如果已经是原始类型了，那就不需要转换了</li>
+<li>如果需要转字符串类型就调用 x.toString()，转换为基础类型的话就返回转换的值。不是字符串类型的话就先调用 valueOf，结果不是基础类型的话再调用 toString</li>
+<li>调用 x.valueOf()，如果转换为基础类型，就返回转换的值</li>
+<li>如果都没有返回原始类型，就会报错</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">  valueOf() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'1'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  [<span class="built_in">Symbol</span>.toPrimitive]() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">1</span> + a <span class="comment">// =&gt; 3</span></span><br></pre></td></tr></table></figure>
+<h6 id="2-四则运算符"><a href="#2-四则运算符" class="headerlink" title="2. 四则运算符"></a>2. 四则运算符</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + <span class="string">'1'</span> <span class="comment">// '11'</span></span><br><span class="line"><span class="literal">true</span> + <span class="literal">true</span> <span class="comment">// 2</span></span><br><span class="line"><span class="number">4</span> + [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>] <span class="comment">// "41,2,3"</span></span><br><span class="line"></span><br><span class="line"><span class="string">'a'</span> + +<span class="string">'b'</span> <span class="comment">// -&gt; "aNaN"</span></span><br><span class="line"></span><br><span class="line"><span class="number">4</span> * <span class="string">'3'</span> <span class="comment">// 12</span></span><br><span class="line"><span class="number">4</span> * [] <span class="comment">// 0</span></span><br><span class="line"><span class="number">4</span> * [<span class="number">1</span>, <span class="number">2</span>] <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<h6 id="3-比较运算符"><a href="#3-比较运算符" class="headerlink" title="3. 比较运算符"></a>3. 比较运算符</h6><ul>
+<li>如果是对象，就通过 toPrimitive 转换对象</li>
+<li>如果是字符串，就通过 unicode 字符索引来比较</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">  valueOf() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'1'</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line">a &gt; <span class="number">-1</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h4 id="5-如何正确判断-this？箭头函数的-this-是什么？"><a href="#5-如何正确判断-this？箭头函数的-this-是什么？" class="headerlink" title="5. 如何正确判断 this？箭头函数的 this 是什么？"></a>5. 如何正确判断 this？箭头函数的 this 是什么？</h4><h6 id="1-场景一-js-普通函数"><a href="#1-场景一-js-普通函数" class="headerlink" title="1. 场景一: js 普通函数"></a>1. 场景一: js 普通函数</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line">foo() <span class="comment">//window</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  a: <span class="number">2</span>,</span><br><span class="line">  foo: foo,</span><br><span class="line">&#125;</span><br><span class="line">obj.foo() <span class="comment">//obj</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> c = <span class="keyword">new</span> foo() <span class="comment">//c</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于直接调用 foo 来说，不管 foo 函数被放在了什么地方，this 一定是 window</li>
+<li>对于 obj.foo() 来说，我们只需要记住，谁调用了函数，谁就是 this，所以在这个场景下 foo 函数中的 this 就是 obj 对象</li>
+<li>对于 new 的方式来说，this 被永远绑定在了 c 上面，不会被任何方式改变 this</li>
+</ul>
+<h6 id="2-场景二-es6-箭头函数"><a href="#2-场景二-es6-箭头函数" class="headerlink" title="2. 场景二: es6 箭头函数"></a>2. 场景二: es6 箭头函数</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>) <span class="comment">//window</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a()()())</span><br></pre></td></tr></table></figure>
+<p>首先箭头函数其实是没有 this 的，箭头函数中的 this 只取决包裹箭头函数的第一个普通函数的 this。</p>
+<h6 id="3-场景三-bind-apply-call"><a href="#3-场景三-bind-apply-call" class="headerlink" title="3. 场景三:bind,apply,call"></a>3. 场景三:bind,apply,call</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;&#125;</span><br><span class="line"><span class="keyword">let</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line">fn.bind().bind(a)() <span class="comment">// =&gt; window</span></span><br></pre></td></tr></table></figure>
+<p>fn 中的 this 永远由第一次 bind 决定</p>
+<h6 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h6><p>首先，new 的方式优先级最高，接下来是 bind 这些函数，然后是 obj.foo() 这种调用方式，最后是 foo 这种调用方式，同时，箭头函数的 this 一旦被绑定，就不会再被任何方式所改变。</p>
+<p><img src="http://lailailee.oss-cn-chengdu.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/TheRoad/this.jpg" alt="image"></p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-原始类型有哪几种？null-是对象嘛？"><span class="toc-text">1. 原始类型有哪几种？null 是对象嘛？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-对象类型和原始类型的不同之处？函数参数是对象会发生什么问题？"><span class="toc-text">2. 对象类型和原始类型的不同之处？函数参数是对象会发生什么问题？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-typeof-是否能正确判断类型？instanceof-能正确判断对象的原理是什么？"><span class="toc-text">3. typeof 是否能正确判断类型？instanceof 能正确判断对象的原理是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-类型转换"><span class="toc-text">4. 类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-对象转原始类型"><span class="toc-text">1. 对象转原始类型</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-四则运算符"><span class="toc-text">2. 四则运算符</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-比较运算符"><span class="toc-text">3. 比较运算符</span></a></li></ol></li></ol><li class="toc-item toc-level-4"><a class="toc-link" href="#5-如何正确判断-this？箭头函数的-this-是什么？"><span class="toc-text">5. 如何正确判断 this？箭头函数的 this 是什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-场景一-js-普通函数"><span class="toc-text">1. 场景一: js 普通函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-场景二-es6-箭头函数"><span class="toc-text">2. 场景二: es6 箭头函数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-场景三-bind-apply-call"><span class="toc-text">3. 场景三:bind,apply,call</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-总结"><span class="toc-text">4.总结</span></a></li></ol></li>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: lailailee</div>
+      
+        <div>
+          原文链接: 
+          <a href target="_blank">https://blog.lailailee.com/2019/10/18/2019-10-18-js基础知识- 01.JS 基础知识点及常考面试题/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/js基础知识/"><i class="fa fa-tags"></i>js基础知识</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">博客推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://xin-tan.com/" target="_blank">GodBMW</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://ruanyifeng.com/" target="_blank">阮一峰的个人网站</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">抓到我</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://juejin.im/user/5c0a20fc6fb9a04a0c2e409c" target="_blank">掘金</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://segmentfault.com/u/shaoduoliao" target="_blank">思否</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: 1040481739@qq.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="javascript:void(0);" data-enable="false">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2019/10/17/2019-10-17-webpack-webpack进阶(四)-Plugin-使打包更加便捷/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+  
+  
+</div>
+    
+  <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+  <script async>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '');
+  </script>
+
+
+
+  <script async>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+
+
+
+  <script async>
+    (function(){
+    var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?":"https://jspassport.ssl.qhimg.com/11.0.1.js?";
+    document.write('<script src="' + src + '" id="sozz"><\/script>');
+    })();
+  </script>
+
+
+    
+  </body>
+</html>
