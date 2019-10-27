@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+  
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="author" content="lailailee">
+  
+  
+  <title>js基础知识 - 02.JS 基础知识点及常考面试题(下).md | lailailee&#39;s blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="js基础知识,js基础知识,">
+  
+
+  
+  <meta name="description" content=" 1. 什么是提升？什么是暂时性死区？var、let 及 const 区别？ 2. 原型如何实现继承？Class 如何实现继承？Class 本质是什么？ 3. 为什么要使用模块化？都有哪几种方式可以实现模块化，各有什么特点？ 4. Proxy 可以实现什么功能？ 5. map, filter, reduce 各自有什么作用？">
+
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"vOg2yRfNoBJb2ecMuIW4tTGy-gzGzoHsz","appkey":"CkvHVQDvAXiy32ELbyxdAfCN","comment":true,"count":true},
+    welcome: {"enable":true,"interval":30},
+    start_time: "2019-05-08",
+    passwords: ["efe07af7441da2b69c4a41e42e73be4db47f66010a56900788a458354a7373ec", ],
+    is_post: true,
+    lock: false,
+    author: "lailailee",
+    share: {"twitter":false,"facebook":false,"weibo":false,"qq":false,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+  
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">LAILAILEE</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | KEEP LEARNING</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/categories/算法/" target="_self">LeetCode刷题</a>
+      
+        <a href="/categories/webpack/" target="_self">webpack</a>
+      
+        <a href="/categories/js基础知识/" target="_self">js基础知识</a>
+      
+        <a href="/categories/设计模式笔记/" target="_self">设计模式笔记</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+        <a href="/friends/" target="_self">友链</a>
+      
+        <a href="/about/" target="_self">关于</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lailailee/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/算法/" target="_self">
+            LeetCode刷题
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/webpack/" target="_self">
+            webpack
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/js基础知识/" target="_self">
+            js基础知识
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/设计模式笔记/" target="_self">
+            设计模式笔记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/friends/" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-10-22
+    </span>
+    
+      <span>
+        | <a href="/categories/js基础知识/"><i class="fa fa-bookmark"></i>js基础知识</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    js基础知识 - 02.JS 基础知识点及常考面试题(下).md
+  </h1>
+  
+  <article class="passage-article">
+    <p><a href="https://github.com/lailailee/The-Road" target="_blank" rel="noopener">&gt;&gt;&gt;The-Road</a></p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 1. 什么是提升？什么是暂时性死区？var、let 及 const 区别？</li>
+<li style="list-style: none"><input type="checkbox"> 2. 原型如何实现继承？Class 如何实现继承？Class 本质是什么？</li>
+<li style="list-style: none"><input type="checkbox"> 3. 为什么要使用模块化？都有哪几种方式可以实现模块化，各有什么特点？</li>
+<li style="list-style: none"><input type="checkbox"> 4. Proxy 可以实现什么功能？</li>
+<li style="list-style: none"><input type="checkbox"> 5. map, filter, reduce 各自有什么作用？</li>
+</ul>
+<h4 id="1-什么是提升？什么是暂时性死区？var、let-及-const-区别？"><a href="#1-什么是提升？什么是暂时性死区？var、let-及-const-区别？" class="headerlink" title="1. 什么是提升？什么是暂时性死区？var、let 及 const 区别？"></a>1. 什么是提升？什么是暂时性死区？var、let 及 const 区别？</h4><ol>
+<li><strong>提升</strong>:分为函数提升和变量提升,函数提升会把整个函数挪到作用域顶部，变量提升只会把声明挪到作用域顶部</li>
+<li><strong>暂时性死区</strong>:在新的作用域(module, function 或 block 作用域)进行实例化时，在此作用域中的用 let/const 声明的变量会先在作用域中被创建出来，但因此时还未进行词法绑定，也就是对声明语句进行求值运算，所以是不能被访问的，访问就会抛出错误。所以在这运行流程一进入作用域创建变量，到变量开始可被访问之间的一段时间，就称之为 TDZ(暂时死区)。</li>
+<li><strong>var、let 及 const 区别</strong>: var 存在提升，我们能在声明之前使用。let、const 因为暂时性死区的原因，不能在声明前使用</li>
+</ol>
+<h4 id="2-原型如何实现继承？Class-如何实现继承？Class-本质是什么？"><a href="#2-原型如何实现继承？Class-如何实现继承？Class-本质是什么？" class="headerlink" title="2. 原型如何实现继承？Class 如何实现继承？Class 本质是什么？"></a>2. 原型如何实现继承？Class 如何实现继承？Class 本质是什么？</h4><ol>
+<li><strong>继承</strong>:一个构造函数调用另一个构造函数的属性和方法</li>
+<li><strong>组合继承</strong></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.val = value</span><br><span class="line">&#125;</span><br><span class="line">Parent.prototype.getValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.val)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  Parent.call(<span class="keyword">this</span>, value)</span><br><span class="line">&#125;</span><br><span class="line">Child.prototype = <span class="keyword">new</span> Parent()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> child = <span class="keyword">new</span> Child(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">child.getValue() <span class="comment">// 1</span></span><br><span class="line">child <span class="keyword">instanceof</span> Parent <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p><strong>寄生组合继承</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Parent</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.val = value</span><br><span class="line">&#125;</span><br><span class="line">Parent.prototype.getValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.val)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  Parent.call(<span class="keyword">this</span>, value)</span><br><span class="line">&#125;</span><br><span class="line">Child.prototype = <span class="built_in">Object</span>.create(Parent.prototype, &#123;</span><br><span class="line">  <span class="keyword">constructor</span>: &#123;</span><br><span class="line">    value: Child,</span><br><span class="line">    enumerable: <span class="literal">false</span>,</span><br><span class="line">    writable: <span class="literal">true</span>,</span><br><span class="line">    configurable: <span class="literal">true</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> child = <span class="keyword">new</span> Child(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">child.getValue() <span class="comment">// 1</span></span><br><span class="line">child <span class="keyword">instanceof</span> Parent <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><strong>Class 继承</strong></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(value) &#123;</span><br><span class="line">    <span class="keyword">this</span>.val = value</span><br><span class="line">  &#125;</span><br><span class="line">  getValue() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.val)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(value) &#123;</span><br><span class="line">    <span class="keyword">super</span>(value)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> child = <span class="keyword">new</span> Child(<span class="number">1</span>)</span><br><span class="line">child.getValue() <span class="comment">// 1</span></span><br><span class="line">child <span class="keyword">instanceof</span> Parent <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-为什么要使用模块化？都有哪几种方式可以实现模块化，各有什么特点？"><a href="#3-为什么要使用模块化？都有哪几种方式可以实现模块化，各有什么特点？" class="headerlink" title="3. 为什么要使用模块化？都有哪几种方式可以实现模块化，各有什么特点？"></a>3. 为什么要使用模块化？都有哪几种方式可以实现模块化，各有什么特点？</h4><ol>
+<li>why</li>
+</ol>
+<ul>
+<li>解决命名冲突</li>
+<li>提供复用性</li>
+<li>提高代码可维护性</li>
+</ul>
+<ol start="2">
+<li>how</li>
+</ol>
+<ul>
+<li>立即执行函数</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params">globalVariable</span>) </span>&#123;</span><br><span class="line">  globalVariable.test = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">  <span class="comment">// ... 声明各种变量、函数都不会污染全局作用域</span></span><br><span class="line">&#125;)(globalVariable)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>AMD,CMD</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AMD</span></span><br><span class="line">define([<span class="string">'./a'</span>, <span class="string">'./b'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 加载模块完毕可以使用</span></span><br><span class="line">  a.do()</span><br><span class="line">  b.do()</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// CMD</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 加载模块</span></span><br><span class="line">  <span class="comment">// 可以把 require 写在函数体的任意地方实现延迟加载</span></span><br><span class="line">  <span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>)</span><br><span class="line">  a.doSomething()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>CommonJS</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  a: <span class="number">1</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">exports.a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// b.js</span></span><br><span class="line"><span class="keyword">var</span> <span class="built_in">module</span> = <span class="built_in">require</span>(<span class="string">'./a.js'</span>)</span><br><span class="line"><span class="built_in">module</span>.a <span class="comment">// -&gt; log 1</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>ES Module</li>
+</ul>
+<p>ES Module 是原生实现的模块化方案，与 CommonJS 有以下几个区别</p>
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> CommonJS 支持动态导入，也就是 <code>require(${path}/xx.js)</code>，后者目前不支持，但是已有提案</li>
+<li style="list-style: none"><input type="checkbox" checked> CommonJS 是同步导入，因为用于服务端，文件都在本地，同步导入即使卡住主线程影响也不大。而后者是异步导入，因为用于浏览器，需要下载文件，如果也采用同步导入会对渲染有很大影响</li>
+<li style="list-style: none"><input type="checkbox" checked> CommonJS 在导出时都是值拷贝，就算导出的值变了，导入的值也不会改变，所以如果想更新值，必须重新导入一次。但是 ES Module 采用实时绑定的方式，导入导出的值都指向同一个内存地址，所以导入值会跟随导出值变化</li>
+<li style="list-style: none"><input type="checkbox" checked> ES Module 会编译成 require/exports 来执行的</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入模块 API</span></span><br><span class="line"><span class="keyword">import</span> XXX <span class="keyword">from</span> <span class="string">'./a.js'</span></span><br><span class="line"><span class="keyword">import</span> &#123; XXX &#125; <span class="keyword">from</span> <span class="string">'./a.js'</span></span><br><span class="line"><span class="comment">// 导出模块 API</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-Proxy-可以实现什么功能？"><a href="#4-Proxy-可以实现什么功能？" class="headerlink" title="4. Proxy 可以实现什么功能？"></a>4. Proxy 可以实现什么功能？</h4><p>Proxy 是 ES6 中新增的功能，它可以用来自定义对象中的操作。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, handler)</span><br></pre></td></tr></table></figure>
+<p>target 代表需要添加代理的对象，handler 用来自定义对象中的操作，比如可以用来自定义 set 或者 get 函数。</p>
+<p>通过 Proxy 来实现一个数据响应式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> onWatch = <span class="function">(<span class="params">obj, setBind, getLogger</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> handler = &#123;</span><br><span class="line">    <span class="keyword">get</span>(target, property, receiver) &#123;</span><br><span class="line">      getLogger(target, property)</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Reflect</span>.get(target, property, receiver)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span>(target, property, value, receiver) &#123;</span><br><span class="line">      setBind(value, property)</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Reflect</span>.set(target, property, value)</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Proxy</span>(obj, handler)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;</span><br><span class="line"><span class="keyword">let</span> p = onWatch(</span><br><span class="line">  obj,</span><br><span class="line">  (v, property) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`监听到属性<span class="subst">$&#123;property&#125;</span>改变为<span class="subst">$&#123;v&#125;</span>`</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  (target, property) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`'<span class="subst">$&#123;property&#125;</span>' = <span class="subst">$&#123;target[property]&#125;</span>`</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">)</span><br><span class="line">p.a = <span class="number">2</span> <span class="comment">// 监听到属性a改变</span></span><br><span class="line">p.a <span class="comment">// 'a' = 2</span></span><br></pre></td></tr></table></figure>
+<p>Vue3.0 要使用 Proxy 替换原本的 API 原因在于 Proxy 无需一层层递归为每个属性添加代理，一次即可完成以上操作</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">get</span>(target, property, receiver) &#123;</span><br><span class="line">   getLogger(target, property)</span><br><span class="line">   <span class="comment">// 这句判断代码是新增的</span></span><br><span class="line">   <span class="keyword">if</span> (<span class="keyword">typeof</span> target[property] === <span class="string">'object'</span> &amp;&amp; target[property] !== <span class="literal">null</span>) &#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Proxy</span>(target[property], handler);</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="built_in">Reflect</span>.get(target, property);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Proxy</p>
+<ul>
+<li>代理的是 对象</li>
+<li>可以拦截到数组的变化</li>
+<li>拦截的方法多达 13 种</li>
+<li>返回一个拦截后的数据</li>
+</ul>
+<p>Object.defineProperty</p>
+<ul>
+<li>代理的是属性</li>
+<li>对数组数据的变化无能为力</li>
+<li>直接修改原始数据</li>
+</ul>
+<h4 id="5-map-filter-reduce-各自有什么作用？"><a href="#5-map-filter-reduce-各自有什么作用？" class="headerlink" title="5. map, filter, reduce 各自有什么作用？"></a>5. map, filter, reduce 各自有什么作用？</h4><ol>
+<li>map 作用是生成一个新数组，遍历原数组，将每个元素拿出来做一些变换然后放入到新的数组中。</li>
+<li>filter 的作用也是生成一个新数组，在遍历数组的时候将返回值为 true 的元素放入新数组，我们可以利用这个函数删除一些不需要的元素</li>
+<li>reduce 可以将数组中的元素通过回调函数最终转换为一个值。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">const</span> sum = arr.reduce(<span class="function">(<span class="params">acc, current</span>) =&gt;</span> acc + current, <span class="number">0</span>)</span><br><span class="line"><span class="built_in">console</span>.log(sum)</span><br></pre></td></tr></table></figure>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-什么是提升？什么是暂时性死区？var、let-及-const-区别？"><span class="toc-text">1. 什么是提升？什么是暂时性死区？var、let 及 const 区别？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-原型如何实现继承？Class-如何实现继承？Class-本质是什么？"><span class="toc-text">2. 原型如何实现继承？Class 如何实现继承？Class 本质是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-为什么要使用模块化？都有哪几种方式可以实现模块化，各有什么特点？"><span class="toc-text">3. 为什么要使用模块化？都有哪几种方式可以实现模块化，各有什么特点？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-Proxy-可以实现什么功能？"><span class="toc-text">4. Proxy 可以实现什么功能？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-map-filter-reduce-各自有什么作用？"><span class="toc-text">5. map, filter, reduce 各自有什么作用？</span></a></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: lailailee</div>
+      
+        <div>
+          原文链接: 
+          <a href target="_blank">https://blog.lailailee.com/2019/10/22/2019-10-26-js基础知识- 03.ES6 知识点及常考面试题/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/js基础知识/"><i class="fa fa-tags"></i>js基础知识</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">博客推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://xin-tan.com/" target="_blank">GodBMW</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://ruanyifeng.com/" target="_blank">阮一峰的个人网站</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">抓到我</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://juejin.im/user/5c0a20fc6fb9a04a0c2e409c" target="_blank">掘金</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://segmentfault.com/u/shaoduoliao" target="_blank">思否</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: 1040481739@qq.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="javascript:void(0);" data-enable="false">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2019/10/18/2019-10-18-js基础知识- 01.JS 基础知识点及常考面试题/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+  
+  
+</div>
+    
+  <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+  <script async>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '');
+  </script>
+
+
+
+  <script async>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+
+
+
+  <script async>
+    (function(){
+    var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?":"https://jspassport.ssl.qhimg.com/11.0.1.js?";
+    document.write('<script src="' + src + '" id="sozz"><\/script>');
+    })();
+  </script>
+
+
+    
+  </body>
+</html>
